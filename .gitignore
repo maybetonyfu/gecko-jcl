@@ -1,0 +1,13 @@
+main.aux
+*.log
+*.out
+*.pdf
+auto
+.DS_Store
+_region_*
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.spl
+*.aux
