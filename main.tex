@@ -229,7 +229,6 @@ The 10 levels are designed to gradually increase difficulty. From the results of
 
 Level 5, 7 and 8 are the only three levels that include functions from standard Haskell library, baring the \texttt{(.)} and \texttt{(\$)} provided for convenience. Level 3 requires programmers to use the \texttt{fst} and \texttt{snd} functions to extract value from a tuple. Level 7 requires programmers to use the \texttt{(<*>)} function of the \texttt{Applicative} class, while level 8 the \texttt{fmap} function of the \texttt{Functor} class. The authors speculate that the more experienced participants are much more familiar with these functions, hence the strong contrast on these three levels. 
 
-
 However, when comparing the task time between the two treatments, we were unable to reject the null hypothesis. In a two-sample T-test, we could not find any significant difference between the two groups overall (p-value = 0.457), nor does there differ between the two groups in any of the four levels of experience (beginner: p-value = 0.845, familiar: p-value = 0.524, Knowledgeable: p-value = 0.712, expert p-value = 0.771).
 
 
@@ -238,13 +237,12 @@ However, when comparing the task time between the two treatments, we were unable
   \caption{\label{fig:level-time} Time spent on each level, with 95\% confidence interval. We show that the difficulty steadily increases across the game, but levels 5, 7, and 8 are significantly harder than the authors intended. The overall task time of each group roughly matches experience level.}
 \end{figure}
 
-
 \subsection{Success rate}
 We saw that, overall, GeckoGraph provides a higher success rate (96.88\%) than text-based type notation (94.62\%). This trend can be seen in every experienced group: beginner group (95. 12\% vs. 92. 68\%), familiar group (97. 39\% vs. 93. 34\%), knowledgeable group (96. 82\% vs. 96. 06\%) and expert group (98. 2\% vs. 96. 40\%). We saw the significance decrease as the user's experience increased. When performing a proportion test on each group, we see that the effect is most significant with the beginner group and reject the null hypothesis (z score = 2.0228, p-value = 0.0431), followed by the familiar group (z score = 1.7495, p-value = 0.0802). The knowledgeable group (z score = 1.0295, p-value = 0.3032) and the expert group (z score = 0.8660, p-value = 0.3756) show less significant differences between treatments. 
 
 When breaking down the result in each task (Fig. \ref{fig:success-rate}), we were able to reject the null hypothesis in task 10 of the beginner group and task 10 of the familiar group \ref{fig:success-rate}. We will address this correlation in Section~\ref{sec:discussion}.
 
-The level 10 is the most cognatively taxing: the provided functions are very long and complex, and the solution is very challenging and deceptive, programmers have to utilize all the provided functions, and compese them eight time to reach the final position. Because level 10 require programmers to switch back and forth to remember what each function does. We speculate that this level require the mental agility of a Haskell expert to internalize these functions, and GeckoGraph help less experienced programmers achieve the similar level efficacy.
+Level 10 is the most cognitively demanding: the provided functions are the lengthiest, and the solution is challenging and deceptive. Programmers must use the provided rotate function {\it f2} to adjust the positions of the four components of the {\it Zero} value four time to get to the correct position. Completing the level requires applying the functions {\it f1}, {\it f2}, and {\it f3} in a nested sequence that is 8 layers deep. Consequently, programmers need to frequently switch contexts to recall the purpose of each function. We speculate that this level demands the mental flexibility typical of a Haskell expert to quickly internalize these functions. GeckoGraph helps less experienced programmers to achieve the same level of comprehension fluency by adding structual clarity.
 
 \begin{figure}[]
   \includegraphics[width=\linewidth]{figures/SuccessfulRate}
@@ -256,24 +254,20 @@ In their responses to the post-study survey, most programmers believe that the d
 For the question ``Do you find the GeckoGraph distracting", most of the participants rated a negative score, with an average of 2.88 (Fig. \ref{fig:qualitative} left). For the question ``How intuitive do you find the GeckoGraph?", we saw a reverse correlation of experience (Fig. \ref{fig:qualitative} Middle): experts find the GeckoGraph most intuitive (5.07), followed by the knowledgeable group (4.87), and the familiar group (4.80). The beginner group found it to be the least intuitive but still rated a positive score of (4.71). 
 When answering the question ``How helpful do you find GeckoGraph in finding the solution during the game?", the answer is more divided into different experience groups (Fig. \ref{fig:qualitative} right). It is slightly positive for beginners (4.25) and slightly negative for the other groups, the familiar group (3.86) and the knowledgeable group (3.32). The expert group finds that GeckoGraph is relatively unhelpful, with an average score of 2.95.
 
-It is interesting to note that programmers find GeckoGraph intuitive, and the more experienced they are, the more likely they find GeckoGraph easy to use. We believe this aligns with our design decision to make GeckoGraph resemble text-based type annotation. Those familiar with text-based type annotation will find GeckoGraph second nature to read. However, the correlation reverses when it comes to perceived helpfulness. The more experienced the users are, the less likely they are to find GeckoGraph helpful. We speculate this pattern occurs because users who are experts in text-based type annotations naturally prefer reading text-based notation and tend to ignore GeckoGraph, diminishing its usefulness. Conversely, novice users are drawn to GeckoGraph and find its visualization offers more clarity than text-based notations.
+Two interesting trends emerge. First, the more experienced the users are, the more likely they find GeckoGraph intuitive and easy to use. We believe this aligns with our design decision to make GeckoGraph resemble text-based type annotation. Those familiar with text-based type annotation find GeckoGraph second nature to read. Second, the correlation reverses when it comes to perceived helpfulness. The more experienced the users are, the less likely they are to find GeckoGraph helpful. We speculate this pattern occurs because users who are experts in text-based type annotations naturally prefer reading text-based notation and tend to ignore GeckoGraph, diminishing its usefulness. Conversely, novice users are more likely to be drawn to GeckoGraph and find its visualization offers more clarity and useful insights.
 
 \begin{figure}[]
   \includegraphics[width=\linewidth]{figures/Qualitative}
   \caption{\label{fig:qualitative} {\bf The users rated scores of how intuitive (left), distracting (middle), and helpful (right) they found GeckoGraph.} Overall, programmers consider GeckoGraph to be intuitive and not distracting. However, opinions are split on its helpfulness. }
 \end{figure}
 
-
-
 \subsection{Threats to validity}
 
 \paragraph{Task design}
 In our human study, most of the provided functions are very abstract. These functions are created by the authors solely for the gamified study. They are designed to be different from well-known Haskell functions to minimize the familiarity variable. They are also designed with an interest of being puzzling and fun.  These functions may not be the most representative of real-world Haskell programming. 
 
-
 \paragraph{The use of skips}
 Although we justified the use of skips in Section \ref{subsection:task}, the availability of skipping does allow users to adopt more utilitarian strategies, often involving skipping a level without giving it a fair try. This happened more often in the later levels when users realized they had enough skip opportunities left to ``complete the game". These strategies may result in lower recorded success rates than if no skips were allowed.
-
 
 
 \section{Discussion} \label{sec:discussion}
