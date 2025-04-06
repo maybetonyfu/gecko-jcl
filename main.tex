@@ -35,9 +35,9 @@
 
  \author{Shuai Fu}
 
- \author{John Grundy}
-
  \author{Peter J. Stuckey}
+
+ \author{John Grundy}
 
  \author{Tim Dwyer}
 
@@ -69,7 +69,7 @@ Polymorphic types are an important feature in most strongly typed programming la
 \section{Introduction} \label{sec:intro}
 In programming languages, a polymorphic type \cite{Cardelli1987-fp} can represent values of different types while providing a interface to describe common behaviors for those values. Polymorphic types are central to the succinctness of contemporary statically-typed functional languages, enabling a considerable degree of type-safe abstraction and hence reusability. Parametric polymorphism, a common technique to denote polymorphic type, is available in many programming languages, from functional languages such as Haskell and ML to imperative and multi-paradigm languages such as Rust\cite{Klabnik_undated-wx} and Go\cite{Griesemer_undated-ff}. Polymorphism allows programs to be written in a way that is more generic and adaptable to different data types, enabling greater flexibility and code reuse. Polymorphic types are ideal for modeling abstractions, such as properties of mathematical objects and laws that hold on these objects. 
 
-Although polymorphic typing promises robustness and a high degree of code reusability, studies~\cite{Jun2000-ec, Jun2000-yu} show that using polymorphism in practice poses challenges, especially for novice users. These studies have shown that humans tend to focus on concrete types and only rely on polymorphic type checking as a last resort. In practice, polymorphic types often pose usability problems for programmers. New polymorphic type variables can be created during type checking. These intermediate type variables are often kept behind the curtain unless a type error is encountered. This often results in programmers resolving type errors with type variables not authored by the programmers themselves (Fig. \ref{fig:example-foldable}).
+While promoting robustness and code reusability, polymorphic types present challenges in comprehension, particularly for novice users \cite{Jun2000-ec, Jun2000-yu}. Research indicates that humans tend to focus on concrete types and rely on polymorphic type checking only as a last resort. Moreover, polymorphic types often complicate type error usability. During type checking, compilers frequently generate new polymorphic type variables temporarily. These variables are typically discarded after type checking unless a type error occurs, in which case they are referenced in error messages. Consequently, programmers often face the task of resolving type errors involving type variables they did not explicitly author (Fig. \ref{fig:example-foldable}).
 
 
 \begin{figure}[]
@@ -77,17 +77,14 @@ Although polymorphic typing promises robustness and a high degree of code reusab
   \caption{\label{fig:example-foldable} An example type error where a programmer mistakenly provided a \texttt{Char} instead of a \texttt{String} literal. \textbf{Left --} The compiler shows an error message comparing the provided Char type to a confusingly named type \texttt{t0 a0}. \textbf{Right --} GeckoGraph shows the exact message with the two types in graphic notation, highlighting the structural difference rather than identifier names.}
 \end{figure}
 
-
-While type polymorphism is one of the oldest topics in programming language theory \cite{Cardelli1987-fp}, little research focuses on the \textit{usability} of polymorphic types. Hage argues that the expressiveness and power of type systems often come at the cost of usability~\cite{Hage2020-hg}. We aim to investigate the challenges of using polymorphic types and explore how to improve their usability with visualization and modern HCI techniques. To achieve this, we propose GeckoGraph, a graphical notation for types. GeckoGraph aims to complement traditional text-based type notation and make reading, understanding, and comparing types easier. GeckoGraph is prototyped and verified iteratively, leading to a design with visual clarity applicable to many programming contexts. Our study evaluating 714 participants' ability to solve a series of programming challenges using GeckoGraph versus text-based type annotation is, to our knowledge, the largest controlled user study of a functional programming tool or concept. The study results show that GeckoGraph helps improve programmers' ability to succeed in resolving the type challenges, especially for novice programmers.
-
+While type polymorphism is one of the oldest topics in programming language theory \cite{Cardelli1987-fp}, little research focuses on the \textit{usability} of polymorphic types. It is often argued that the expressiveness and power of type systems often come at the cost of usability~\cite{Hage2020-hg}. We aim to investigate the challenges of using polymorphic types and explore how to improve their usability with visualization and modern HCI techniques. In this paper, we propose GeckoGraph, a graphical notation for types. GeckoGraph aims to complement traditional text-based type notation and make reading, understanding, and comparing types easier. GeckoGraph is prototyped and verified iteratively, leading to a design with visual clarity applicable to many programming contexts. Our study evaluating 714 participants' ability to solve a series of programming challenges using GeckoGraph versus text-based type annotation is, to our knowledge, the largest controlled user study of a functional programming tool or concept. The study results show that GeckoGraph helps improve programmers' ability to succeed in resolving the type challenges, especially for novice programmers.
 
 \section{GeckoGraph}
 
 GeckoGraph is a visual notation for type annotations in statically typed programming languages. It is intended to work tangibly with text-based annotations, but uses colors, shapes, and symbols to make structures of types easy to identify at a glance. In this section, we describe the design of GeckoGraph and highlight some unique benefits of programming with GeckoGraph.
-        
 
 \subsection{Design of GeckoGraph}
-The design of GeckoGraph focuses on visualizing types in functional languages (e.g., Haskell, ML). In this paper, we use Haskell as an example. As illustrated in this section, it can express basic types, polymorphic types, algebraic data types, and many advanced type-level features. However, GeckoGraph could also be used in imperative and multiparadigm languages such as TypeScript and Rust. We provide a GeckoGraph visualization tool avaiable online for multiple languages \todo{cite GeckoGraph website}.
+The design of GeckoGraph focuses on visualizing types in functional languages (e.g., Haskell, ML). In this paper, we use Haskell as an example. As illustrated in this section, it can express basic types, polymorphic types, algebraic data types, and many advanced type-level features. However, GeckoGraph could also be used in imperative and multiparadigm languages such as TypeScript and Rust. We provide a GeckoGraph visualization tool avaiable online for multiple languages \cite{Fu2025-ka}.
 
 We identified three main design goals for GeckoGraph based on the challenges of using polymorphic types~\cite{Jun2000-ec, Jun2000-yu} and how programmers tend to use type annotations to support their programming tasks~\cite{Justin_Lubin2021-yy}, as follows. 
 
@@ -108,14 +105,11 @@ Simple types, such as type variables and concrete types, are displayed in a cell
   }
 \end{figure}
 
-
 \paragraph{Complex types}
 GeckoGraph displays an algebraic data type as a larger cell, where the type constructor half encloses its arguments: \includegraphics[height=1em]{figures/DataType.png}. The arguments are aligned in the bottom right of the cell. Two distinct visual dimensions are used to provide additional visual clarity (design goal \ref{goal2}). Data types containing more arguments (e.g., \texttt{ a b c} or \texttt{(a b) c}) will expand horizontally \includegraphics[height=1em]{figures/DataTypeWide.png}. Data types that are nested (e.g. \texttt{ a (b c)}) will grow taller \includegraphics[height=1.2em]{figures/DataTypeNested.png}. This distinction accommodates our design goal \ref{goal3}. Note that the height of GeckoGraph grows only upwards, but not downwards. Not only does this allow GeckoGraph to be more efficient in its space usage, but it also allows the legend text to be consistently aligned at the bottom and can be read as though it is a text-based type notation (design goal \ref{goal1}).  
 
-
 \paragraph{Function Types}
 Functions are the fundamental building blocks of functional programming languages, and function types are ubiquitous and the most important in type-level programming. In Haskell, \texttt{(->)} is defined as an infix type operator with the right associativity to provide succinct type annotation. GeckoGraph preserves this syntax feature to make the notation more intuitive (design goal \ref{goal1}): the 2 arguments of a function type in GeckoGraph are placed on both sides of the cell \includegraphics[height=1em]{figures/Function.png}. A special function indicator (\texttt{$>>>$}) is displayed at the top of the cell. 
-
 
 Curried functions (e.g., \texttt{ a -> b -> c}) display as two cells of functions merged together \includegraphics[height=1em]{figures/Curry.png}. It displays as if the second function covers the right half of the first function, indicating that the second function is the return type of the first. Regular high-order functions (e.g., \texttt{(a -> b) -> c} ) follow the rules of functions and nested data types \includegraphics[height=1.2em]{figures/HOF.png}. The placement of function indicators aims to make it easy to find desired functions in the documentation site based on function arity and high-order functions (design goal \ref{goal3}). It is easy to tell high-order functions from the vertical position of its function indicator. Similarly, it is easy to count the arity of a function by counting the number of horizontally connected function indicators (Fig. \ref{fig:indicator}). 
 
@@ -203,25 +197,24 @@ Participants were recruited online through the Haskell community on Reddit and D
 
 \subsection{Group Assignments}
 
-The experiment uses a between-subject design. However, all participants receive both treatments (with and without GeckoGraph) during their runs. Participants are assigned to one of two groups. Both groups receive the same tasks in the same order. Group one participants are assisted by GeckoGraph on even levels and only text-based type annotation on odd levels. Group two participants are the same but with the order flipped. Both groups have access to the text-based type signature for all tasks. The number of participants in the two groups is counterbalanced.
+The experiment uses a between-subject design. Participants are assigned to one of two groups. The tasks asiigned to the two groups are the same order. Participants receive both treatments (with and without GeckoGraph) during their runs but in different order.   Group one is assisted by GeckoGraph on even levels and text-only type annotation on odd levels. Group two participants are the same but with the order flipped. The number of participants in the two groups is counterbalanced.
 
 \subsection{Hypothesis}
-In programming tasks that involve reading and understanding polymorphic types, graphic notation using visual elements that provide higher grouping strength (colors, shapes, sizes, and symbols) can improve the performance of such tasks compared to traditional text-based type notation. Our null hypothesis is: {\it Using graphic notation has no effect compared to traditional text-based type notation.} This hypothesis and the task design were registered at the Open Science Foundation prior to data collection \todo{cite this}. 
+In programming tasks that involve reading and understanding polymorphic types, graphic notation using visual elements that provide higher grouping strength (colors, shapes, sizes, and symbols) can improve the performance of such tasks compared to traditional text-based type notation. Our null hypothesis is: {\it Using graphic notation has no effect compared to traditional text-based type notation.} This hypothesis and the task design were registered at the Open Science Foundation prior to data collection \cite{Stuckey2023-vl}. 
 
 \subsection{Task Design} \label{subsection:task}
-Participants in both groups receive the same 10 tasks. The tasks start off easy but gradually increase in difficulty.  In each task, a target type signature of the function \texttt{zeroToHero} is given to the participants. Participants are provided with a list of available functions to implement the target function. This is to simulate the tasks of selecting useful functions from a library. In addition, participants are not allowed to use any other functions or variables outside the provided functions; even the Haskell prelude is not available. This ensures that everyone has the same knowledge and minimizes the effect of familiarity. 
+During the study, participants receive 10 tasks, represented by the 10 levels of the game {\it zeroToHero}. The tasks start off easy but gradually increase in difficulty.  In each task, a target type of the function \texttt{zeroToHero} is shown to the participants. Participants are provided with a list of available functions to implement the target function, and to ensure it assume the target type. This is to simulate the tasks of selecting useful functions from a library. Participants are not allowed to use any other functions or variables outside the provided functions; even the Haskell prelude is not available. This ensures that everyone has the same knowledge and minimizes the effect of familiarity. 
 
 Participants can skip a level during the game if they are stuck. We believe that it is normal for anyone to get stuck on a challenging task, and being stuck on one of the 10 tasks does not discount their feedback of the tool. We limit the number of skips that a participant can use during the game to four so that submitting qualitative feedback without completing at least some levels is impossible. 
 
 \subsection{Measurements}
 During the study, the time spent by participants on each task is recorded. We also record the resulting status of each level, whether it is a success or failure. Before each run, participants nominate their level of Haskell experience on a four-level scale: beginner, familiar,  knowledgeable, and expert.  If a participant has completed all 10 levels (with the help of skipping), we invite the participant to complete a post-study survey. In it, we ask for their opinion on how intuitive the GeckoGraph design is, how distracting they find GeckoGraph, and how helpful GeckoGraph is during the game, using a seven-point scale. In the end, we ask a few open-ended questions, inviting participants to provide their experience using GeckoGraph and their expectations about the potential applications of GeckoGraph.
 
-Data collection from the human study was stopped after the planned cut-off period of 14 days. After the cut-off date, the ZeroToHero game is open source and available for free evaluation \cite{Anonymous_undated-ne} and repeating our experiment, but no further data was collected. 
+Data collection from the study was stopped after the planned cut-off period of 14 days. After the cut-off date, the ZeroToHero game is open source and available for free evaluation \cite{Anonymous_undated-ne} and repeating our experiment, but no further data was collected. 
 
 \section{Results}
 
 During the data collection period, a total of 714 users participated in the study. Among them, 245 are novice users, 216 are familiar with Haskell, 216 are knowledgeable users, and 88 are expert users. 
-
 
 \subsection{Time to complete levels}
 
@@ -230,7 +223,6 @@ The 10 levels are designed to gradually increase difficulty. From the results of
 Level 5, 7 and 8 are the only three levels that include functions from standard Haskell library, baring the \texttt{(.)} and \texttt{(\$)} provided for convenience. Level 3 requires programmers to use the \texttt{fst} and \texttt{snd} functions to extract value from a tuple. Level 7 requires programmers to use the \texttt{(<*>)} function of the \texttt{Applicative} class, while level 8 the \texttt{fmap} function of the \texttt{Functor} class. The authors speculate that the more experienced participants are much more familiar with these functions, hence the strong contrast on these three levels. 
 
 However, when comparing the task time between the two treatments, we were unable to reject the null hypothesis. In a two-sample T-test, we could not find any significant difference between the two groups overall (p-value = 0.457), nor does there differ between the two groups in any of the four levels of experience (beginner: p-value = 0.845, familiar: p-value = 0.524, Knowledgeable: p-value = 0.712, expert p-value = 0.771).
-
 
 \begin{figure}[]
   \includegraphics[width=\linewidth]{figures/LevelTime}
@@ -268,7 +260,6 @@ In our human study, most of the provided functions are very abstract. These func
 
 \paragraph{The use of skips}
 Although we justified the use of skips in Section \ref{subsection:task}, the availability of skipping does allow users to adopt more utilitarian strategies, often involving skipping a level without giving it a fair try. This happened more often in the later levels when users realized they had enough skip opportunities left to ``complete the game". These strategies may result in lower recorded success rates than if no skips were allowed.
-
 
 \section{Discussion} \label{sec:discussion}
 \subsection{Strengths}
