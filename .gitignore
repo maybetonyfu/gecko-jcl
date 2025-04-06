@@ -2,6 +2,7 @@ main.aux
 *.log
 *.out
 *.pdf
+!figures/*.pdf
 auto
 .DS_Store
 _region_*
