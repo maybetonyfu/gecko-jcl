@@ -117,7 +117,7 @@ Functions are the fundamental building blocks of functional programming language
 
 Curried functions (e.g., \texttt{ a -> b -> c}) are displayed as two cells of functions merged together \includegraphics[height=1em]{figures/Curry.png}. It appears as if the second function covers the right half of the first function, indicating that the second function is the return type of the first. Regular high-order functions (e.g., \texttt{(a -> b) -> c} ) follow the rules of functions and nested data types \includegraphics[height=1.2em]{figures/HOF.png}. The placement of function indicators aims to make it easy to find desired functions in the documentation site based on function arity and high-order functions (design goal \ref{goal3}). It is easy to tell high-order functions from the vertical position of its function indicator. Similarly, it is easy to count the arity of a function by counting the number of horizontally connected function indicators (Fig. \ref{fig:indicator}). 
 
-\begin{figure}[]
+\begin{figure}[h]
   \includegraphics[width=\linewidth]{figures/Indicator}
   \caption{
         \label{fig:indicator}
@@ -180,8 +180,6 @@ Modern programming environments often allow programmers to mouse over part of th
   \label{fig:advanced}
   Advanced features of GeckoGraph. (A) GeckoGraph supports Kind Visualization if the inferred kind is greater than \texttt{*}. (B) GeckoGraph supports qualified constraints by extending the extended area across multiple type variables. (C) GeckoGraph supports Multiple Parameter Type Classes, using different shapes of the same color to indicate that multiple variables must satisfy certain type classes collectively. (D) GeckoGraph supports the precise selection of its sub-structures. }
 \end{figure}
-
-
 
 
 \section{Evaluation} \label{sec:evaluation}
