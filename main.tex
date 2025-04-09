@@ -143,13 +143,12 @@ GeckoGraph was designed through many different iterations. Many research methods
 \end{figure}
 
 \paragraph{Visual Dimensions of GeckoGraph}
-\textbf{The colors of GeckoGraph} help programmers to see the permutation of type variables in the input and output of a function. A recent review \cite{Zeng2023-jz} of 59 graphical perception articles showed that combining solid color hue in a filled shape provides stronger visual perception for nominal data such as type identifiers. One example of GeckoGraph's use of color is the ``rotation" function  (Fig. \ref{fig:rotate}) in the user study (Section \ref{sec:evaluation}). With text-based type notation, programmers often rely on mnemonic devices such as alphabetic ordering or naming conventions. For example, the rotation function \texttt{f2 :: Zero a b c d -> Zero b c d a} in the game is less recognizable if changed to \texttt{f2 :: Zero e v m h -> Zero v m h e}. 
+\textbf{The colors of GeckoGraph} help programmers to see the permutation of type variables in the input and output of a function. A recent review \cite{Zeng2023-jz} of 59 graphical perception articles showed that combining solid color hue in a filled shape provides stronger visual perception for nominal data such as type identifiers. Goanna uses one of the qualitative color scheme from ColorBrewer \cite{Harrower2003-vu}. One example of GeckoGraph's use of color is the ``rotation" function  (Fig. \ref{fig:rotate}) in the user study (Section \ref{sec:evaluation}). With text-based type notation, programmers often rely on mnemonic devices such as alphabetic ordering or naming conventions. For example, the rotation function \texttt{f2 :: Zero a b c d -> Zero b c d a} in the game. It shuffles the type arguments one step to the left. The purpose of this function becomes less recognizable if changed to \texttt{f2 :: Zero e v m h -> Zero v m h e}. 
 
 \begin{figure}[]
   \includegraphics[width=0.6\linewidth]{figures/rotate}
-  \caption{\label{fig:rotate} The `rotate' function in level 8 of the user study. The name given in the game is `f2'. It shuffles the type arguments of a Zero type}
+  \caption{\label{fig:rotate} The `rotate' function in the user study. The name given in the game is `f2'. It shuffles the type arguments one step to the left.}
 \end{figure}
-
 
 \textbf{The horizontal axis of GeckoGraph} often are helpful in identifying differences in function arities. For example, in Fig. \ref{fig:add3}, the programmer intended to implement a function that sums 3 integers. In the implementation, the programmer missed a \texttt{(+)} function at the end; the resulting function type is largely different in length. It is also clear that the function needs to apply to one more binary function to satisfy the length requirement.  
 
@@ -195,8 +194,7 @@ The experiment aims to study how programmers use and reason about polymorphic ty
   
 \end{figure}
 
-We illustrate the task of the user study using level 2 of the game. At this level (Fig. \ref{fig:level-example}), the programmers are tasked with implementing the function \texttt{ zeroToHero :: Zero a -> Hero b}. The available functions are \texttt{runZero::Zero a -> a}, \texttt{makeHero:: a -> Hero a}. A generic function \texttt{(\$)} is provided to improve the ergonomics of composing functions, but all tasks can be completed without the use of generic functions. The possible solution and other details of the level can be found in the appendix (Appendix \ref{levels}).
-To complete this level, player only needs to use each of the provided function once. The implementation {\tt zeroToHero z = makeHero (runZero z)} is one possible solution.
+We illustrate the task of the user study using levels 2 and 3of the game. At level 2 (Fig. \ref{fig:level-example}), the players need to implement the function \texttt{ zeroToHero :: Zero a -> Hero b}. The available functions are \texttt{runZero::Zero a -> a}, \texttt{makeHero:: a -> Hero a}. A generic function \texttt{(\$)} is provided to improve the ergonomics of composing functions, but all tasks can be completed without the use of generic functions. The possible solution and other details of the level can be found in the appendix (Appendix \ref{levels}). To complete this level, players only need to use each of the provided function once. The implementation {\tt zeroToHero z = makeHero (runZero z)} is one possible solution.
 
 \begin{figure}[!h]
   \includegraphics[width=\linewidth]{figures/Level3}
@@ -204,7 +202,7 @@ To complete this level, player only needs to use each of the provided function o
 \end{figure}
 
 
-In level 3, the player need to implement the function {\tt zeroToHero :: Zero a -> Hero (a, a)}.  In this level, not all provided functions are used in the final result. In particular,  players must discover that only \texttt{f1} and \texttt{f3} are necessary to produce the desired results. One implementation that satisfies the target type is \texttt{zeroTohero z = f3 (f1 z)}. Another possible implementation is {\tt zeroToHero z = f3 . f1 \$ z}.
+In level 3 (Fig. \ref{fig:level3}),  players need to implement the function {\tt zeroToHero :: Zero a -> Hero (a, a)}.  In this level, not all provided functions are used in the final result. In particular,  players must discover that only \texttt{f1} and \texttt{f3} are necessary to produce the desired results. One implementation that satisfies the target type is \texttt{zeroTohero z = f3 (f1 z)}. Another possible implementation is {\tt zeroToHero z = f3 . f1 \$ z}, exercising the Haskell function composition idioms.
 
 
 
