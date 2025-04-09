@@ -188,16 +188,24 @@ To evaluate the usefulness of GeckoGraph, we designed and conducted a controlled
 The experiment aims to study how programmers use and reason about polymorphic type when performing programming tasks. In particular, we studied how programmers scan and select potentially useful functions from a library and compare intended types and actual types during type errors.
 
 
-\subsection{An example level}
-We illustrate the task of the user study using level 4 of the game. At this level (Fig. \ref{fig:level-example}), the programmers are tasked with implementing the function \texttt{ zeroToHero :: Zero a b -> Hero b b}. The available functions are \texttt{f1::Zero a b -> Hero b a}, \texttt{f2::Zero a a -> Hero a a}, \texttt{f3::Zero a b -> Hero b a}, and \texttt{f4::Zero a b -> Hero b b}. Two generic functions \texttt{(\$)} and \texttt{(.)} are provided to improve the ergonomics of composing functions, but all tasks can be completed without the use of generic functions. The possible solution and other details of the level can be found in the appendix (Appendix \ref{levels}).
-
-
+\subsection{Example Levels}
 \begin{figure}[h]
-  \includegraphics[width=\linewidth]{figures/GamePlay}
-  \caption{\label{fig:level-example} A screenshot from  the game ZeroToHero. On this level -- level 4 (Shown at F) -- the players need to implement the function \texttt{ zeroToHero :: Zero a b -> Hero b b} (B). They write their own definitions in the code editor (D) using a set of provided functions (G). The inferred type of their current definition is shown in (C). When ready, they can test their solution by clicking on the \textit{Attempt} button (A). They can also skip a level by clicking on the \textit{Bypass} button next to it. The output from the compiler, if there is any, is shown in a window below (E). The GeckoGraph in the screenshot uses a different color scheme that is optimized for computer screens.}
+  \includegraphics[width=\linewidth]{figures/Level2}
+  \caption{\label{fig:level-example} A screenshot from  the game ZeroToHero. On this level -- level 2 (Shown at A) -- the players need to implement the function \texttt{ zeroToHero :: Zero a -> Hero a} (B). They write their own definitions in the code editor (D) using a set of provided functions (G). The inferred type of their current definition is shown in (C). When ready, they can test their solution by clicking on the \textit{Attempt} button (E). They can also skip a level by clicking on the \textit{Skip (n left)} button next to it (F).}
+  
 \end{figure}
 
-At each level of the game, the programmer must select the right set of functions and compose them correctly to achieve the target result. Not all provided functions are useful. In particular, for this level, participants must discover that only \texttt{f4} and \texttt{f2} are necessary to produce the desired results. One implementation that satisfies the target type is \texttt{zeroTohero z = f2 (f4  z)}. 
+We illustrate the task of the user study using level 2 of the game. At this level (Fig. \ref{fig:level-example}), the programmers are tasked with implementing the function \texttt{ zeroToHero :: Zero a -> Hero b}. The available functions are \texttt{runZero::Zero a -> a}, \texttt{makeHero:: a -> Hero a}. A generic function \texttt{(\$)} is provided to improve the ergonomics of composing functions, but all tasks can be completed without the use of generic functions. The possible solution and other details of the level can be found in the appendix (Appendix \ref{levels}).
+To complete this level, player only needs to use each of the provided function once. The implementation {\tt zeroToHero z = makeHero (runZero z)} is one possible solution.
+
+\begin{figure}[!h]
+  \includegraphics[width=\linewidth]{figures/Level3}
+  \caption{\label{fig:level3} A screenshot showing the level 3 of the game ZeroToHero.  In this level, the players need to implement the function \texttt{ zeroToHero :: Zero a -> Hero (a a)}. Players are helped by the functions: {\tt f1 :: Zero a -> Hero a}, {\tt f2 :: Zero a -> (a, a)}, and {\tt f3 :: Hero a -> Hero (a, a)}.}
+\end{figure}
+
+
+In level 3, the player need to implement the function {\tt zeroToHero :: Zero a -> Hero (a, a)}.  In this level, not all provided functions are used in the final result. In particular,  players must discover that only \texttt{f1} and \texttt{f3} are necessary to produce the desired results. One implementation that satisfies the target type is \texttt{zeroTohero z = f3 (f1 z)}. Another possible implementation is {\tt zeroToHero z = f3 . f1 \$ z}.
+
 
 
 \subsection{Recruitment}
@@ -228,7 +236,7 @@ During the data collection period, a total of 714 users participated in the stud
 
 The 10 levels are designed to increase difficulty gradually. From the results of the experiment, most of the tasks align with this trend. However, three tasks stand out in Fig. \ref{fig:level-time}.  Level 7 (mean = 334 seconds) is the hardest task in the game in terms of time, followed by level 8 (mean = 228 seconds) and level 5 (mean = 224 seconds). To complete an average level, the beginner group uses an average of 100 seconds, the familiar group uses 90 seconds, the knowledgeable group uses 80 seconds, and the expert group uses 70 seconds. This roughly aligns with self-reported expertise. We show that the task time on each level follows normal distributions using a Shapiro-Wilk test \cite{Shaphiro1965-dx} (p-value  $ \leq 1.018 \times 10^-16$, for an alpha value of 0.05, p less than 0.05 is considered normal distribution).
 
-Levels 5, 7, and 8 are the only three levels that include functions from standard Haskell library, baring the \texttt{(.)} and \texttt{(\$)} provided for convenience. Level 3 requires programmers to use the \texttt{fst} and \texttt{snd} functions to extract value from a tuple. Level 7 requires programmers to use the \texttt{(<*>)} function of the \texttt{Applicative} class, while level 8 requires the \texttt{fmap} function of the \texttt{Functor} class. The authors speculate that the more experienced participants are much more familiar with these functions, hence the strong contrast on these three levels. 
+Levels 5, 7, and 8 are the only three levels that include functions from standard Haskell library, baring the \texttt{(.)} and \texttt{(\$)} provided for convenience. Level 5 requires programmers to use the \texttt{fst} and \texttt{snd} functions to extract value from a tuple. Level 7 requires programmers to use the \texttt{(<*>)} function of the \texttt{Applicative} class, while level 8 requires the \texttt{fmap} function of the \texttt{Functor} class. The authors speculate that the more experienced participants are much more familiar with these functions, hence the strong contrast on these three levels. 
 
 However, when comparing the task time between the two treatments, we were unable to reject the null hypothesis. In a two-sample T-test, we could not find any significant difference between the two groups overall (p-value = 0.457), nor does there differ between the two groups in any of the four levels of experience (beginner: p-value = 0.845, familiar: p-value = 0.524, Knowledgeable: p-value = 0.712, expert p-value = 0.771).
 
