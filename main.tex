@@ -194,7 +194,7 @@ The experiment aims to study how programmers use and reason about polymorphic ty
   
 \end{figure}
 
-We illustrate the task of the user study using levels 2 and 3of the game. At level 2 (Fig. \ref{fig:level-example}), the players need to implement the function \texttt{ zeroToHero :: Zero a -> Hero b}. The available functions are \texttt{runZero::Zero a -> a}, \texttt{makeHero:: a -> Hero a}. A generic function \texttt{(\$)} is provided to improve the ergonomics of composing functions, but all tasks can be completed without the use of generic functions. The possible solution and other details of the level can be found in the appendix (Appendix \ref{levels}). To complete this level, players only need to use each of the provided function once. The implementation {\tt zeroToHero z = makeHero (runZero z)} is one possible solution.
+We illustrate the task of the user study using levels 2 and 3 of the game. At level 2 (Fig. \ref{fig:level-example}), the players need to implement the function \texttt{ zeroToHero :: Zero a -> Hero b}. The available functions are \texttt{runZero::Zero a -> a}, \texttt{makeHero:: a -> Hero a}. A generic function \texttt{(\$)} is provided to improve the ergonomics of composing functions, but all tasks can be completed without the use of generic functions. The possible solution and other details of the level can be found in the appendix (Appendix \ref{levels}). To complete this level, players only need to use each of the provided function once. The implementation {\tt zeroToHero z = makeHero (runZero z)} is one possible solution.
 
 \begin{figure}[!h]
   \includegraphics[width=\linewidth]{figures/Level3}
