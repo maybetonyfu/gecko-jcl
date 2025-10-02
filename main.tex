@@ -79,7 +79,7 @@ While promoting robustness and code reusability, polymorphic types present chall
   \caption{\label{fig:example-foldable} An example type error where a programmer mistakenly provided a \texttt{Char} instead of a \texttt{String} literal. \textbf{Left --} The compiler shows an error message comparing the provided Char type to a confusingly named type \texttt{t0 a0}. \textbf{Right --} GeckoGraph shows the exact message with the two types in graphic notation, highlighting the structural difference rather than identifier names.}
 \end{figure}
 
- We aim to investigate the challenges of using polymorphic types and explore how to improve their usability with visualization and modern HCI (Human-Computer Interaction) techniques. In this paper, we propose GeckoGraph, a graphical notation for types. GeckoGraph aims to complement traditional text-based type notation and make reading, understanding, and comparing types easier. GeckoGraph is prototyped and verified iteratively, leading to a design with visual clarity applicable to many programming contexts. Our study evaluating 714 participants' ability to solve a series of programming challenges using GeckoGraph versus text-based type annotation is, to our knowledge, the largest controlled user study of a functional programming tool or concept. The study results show that GeckoGraph helps improve programmers' ability to succeed in resolving programming challenges, especially for novice programmers.
+ We aim to investigate the challenges of using polymorphic types and explore how to improve their usability with visualization and modern Human-Computer Interaction (HCI) techniques. In this paper, we propose GeckoGraph, a graphical notation for types. GeckoGraph aims to complement traditional text-based type notation and make reading, understanding, and comparing types easier. GeckoGraph is prototyped and verified iteratively, leading to a design with visual clarity applicable to many programming contexts. We designed an online puzzle game \textit{ZeroToHero}\footnote{Available at https://zerotohero.fly.dev}, evaluating 714 participants' performance to solve a series of programming challenges using GeckoGraph versus text-based type annotation, which is, to our knowledge, the largest controlled user study of a functional programming tool or concept. The study results show that GeckoGraph helps improve programmers' ability to succeed in resolving programming challenges, especially for novice programmers.
 
 \section{GeckoGraph}
 
@@ -176,7 +176,6 @@ Modern programming environments often allow programmers to mouse over part of th
 \label{fig:advanced}
   \includegraphics[width=\linewidth]{figures/Advanced}
   \caption{
-  \label{fig:advanced}
   Advanced features of GeckoGraph. (A) GeckoGraph supports Kind Visualization if the inferred kind is greater than \texttt{*}. (B) GeckoGraph supports qualified constraints by extending the extended area across multiple type variables. (C) GeckoGraph supports Multiple Parameter Type Classes, using different shapes of the same color to indicate that multiple variables must satisfy certain type classes collectively. (D) GeckoGraph supports the precise selection of its sub-structures. }
 \end{figure}
 
@@ -222,9 +221,9 @@ During the study, participants receive 10 tasks, represented by the 10 levels of
 Participants can skip a level during the game if they are stuck. We believe that it is normal for anyone to get stuck on a challenging task, and being stuck on one of the 10 tasks does not discount their feedback of the tool. We limit the number of skips that a participant can use during the game to four so that submitting qualitative feedback without completing at least some levels is impossible. 
 
 \subsection{Measurements}
-During the study, the time spent by participants on each task is recorded. We also record the resulting status of each level, whether it is a success or failure. Before each run, participants nominate their level of Haskell experience on a four-level scale: beginner, familiar,  knowledgeable, and expert.  If a participant has completed all 10 levels (with the help of skipping), we invite the participant to complete a post-study survey. In it, we ask for their opinion on how intuitive the GeckoGraph design is, how distracting they find GeckoGraph, and how helpful GeckoGraph is during the game, using a seven-point scale. In the end, we ask a few open-ended questions, inviting participants to provide their experience using GeckoGraph and their expectations about the potential applications of GeckoGraph.
+During the study, the time spent by participants on each task is recorded. We also record the resulting status of each level, whether it is a success or a failure. Before each run, participants nominate their level of Haskell experience on a four-level scale: beginner, familiar,  knowledgeable, and expert.  If a participant has completed all 10 levels (with the help of skipping), we invite the participant to complete a post-study survey. In it, we ask for their opinion on how intuitive the GeckoGraph design is, how distracting they find GeckoGraph, and how helpful GeckoGraph is during the game, using a seven-point scale. In the end, we ask a few open-ended questions, inviting participants to provide their experience using GeckoGraph and their expectations about the potential applications of GeckoGraph.
 
-Data collection from the study was stopped after the planned cut-off period of 14 days. After the cut-off date, the ZeroToHero game is open source and available for free evaluation \cite{Anonymous_undated-ne} and repeating our experiment, but no further data was collected. 
+Data collection from the study was stopped after the planned cut-off period of 14 days. After the cut-off date, the ZeroToHero game is open source and available for free evaluation \footnote{https://zerotohero.fly.dev} and repeating our experiment, but no further data was collected. 
 
 \section{Results}
 
@@ -250,9 +249,9 @@ When breaking down the result in each task (Fig. \ref{fig:success-rate}), we wer
 
 Level 10 is the most cognitively demanding: the provided functions are the lengthiest, and the solution is challenging and deceptive. Programmers must use the provided rotate function {\it f2} to adjust the positions of the four components of the {\it Zero} value four times to get to the correct position. Completing the level requires applying the functions {\it f1}, {\it f2}, and {\it f3} in a nested sequence that is 8 layers deep. Consequently, programmers need to frequently switch contexts to recall the purpose of each function. We speculate that this level demands the mental flexibility typical of a Haskell expert to internalize these functions quickly. GeckoGraph helps less experienced programmers to achieve the same level of comprehension fluency by adding structural clarity.
 
-\begin{figure}[]
+\begin{figure}[ht]
   \includegraphics[width=\linewidth]{figures/SuccessfulRate}
-  \caption{\label{fig:success-rate}{\bf Success rate of each task, with 95\% confidence interval, grouped by experience level.} The figure is cropped from 50\% to 100\% for readability. In most tasks, GeckoGraph provides a small edge. However, significant differences were found in task 10 of the beginner group and task 10 of the familiar group. }
+  \caption{\label{fig:success-rate}{\bf Success rate of each task, with 95\% confidence interval, grouped by experience level.} The figure is cropped from 50\% to 100\% for readability. Bootstrapping was used for computing the confidence interval because of the non-normal distribution. In most tasks, GeckoGraph provides a small edge. However, significant differences were found in task 10 of the beginner group and task 10 of the familiar group. }
 \end{figure}
 
 \subsection{Qualitative Feedback}
@@ -285,7 +284,7 @@ Although we justified the use of skips in Section \ref{subsection:task}, the ava
 From the results of our experiment, we see that using GeckoGraph has a significant effect on the success rate of our participants, especially for less experienced programmers. We also see that with the data we collected, we did not find a significant time difference between programming with and without GeckoGraph. To extrapolate the observed expressiveness, we speculate on the practical benefits of programming with GeckoGraph.
 
 \subsubsection{Identify the Most Important Features}
-One trend we saw from the qualitative feedback is that programmers find GeckoGraph helpful for finding patterns and important features of the types. Programmers are very positive about GeckoGraph's ability to reveal the most helpful features of a type in distinctive visual elements such as color, length, and height.
+One trend we saw from the qualitative feedback is that programmers find GeckoGraph helpful for spotting patterns and important features from the types. Programmers are very positive about GeckoGraph's ability to reveal the most helpful features of a type in distinctive visual elements such as color, length, and height.
 To quote some feedback from participants: ``{\it Types are much easier to understand by the GeckoGraph than by trying to parse all parentheses and understand the types from the signature.} " ``{\it It makes it easier to see at a glance when your output type is correct or what the difference between the current type and the target is.}"
 
 \subsubsection{Generalize patterns in type classes}
@@ -380,7 +379,7 @@ We strongly believe that visualization is an underutilized technique in this eff
 
 \appendix
 \section{Game levels} \label{levels}
-We provide all the level settings we used in our user study. The online game is open source and available for evaluation \cite{Anonymous_undated-ne}. However, this can be attempted locally with a Haskell interpreter or even with a pen and paper. The target type is the desired type signature for the function \texttt{zeroToHero}. The available functions show a list of functions that are allowed to be used in the implementation. It is not required to use all the available functions, and it is not forbidden to use any other functions or variables outside the provided functions; even the Haskell prelude is not available. 
+We provide all the level settings we used in our user study. The online game is open source and available for evaluation \footnote{https://zerotohero.fly.dev}. However, this can be attempted locally with a Haskell interpreter or even with a pen and paper. The target type is the desired type signature for the function \texttt{zeroToHero}. The available functions show a list of functions that are allowed to be used in the implementation. It is not required to use all the available functions, and it is not forbidden to use any other functions or variables outside the provided functions; even the Haskell prelude is not available. 
 
 
 \subsection{Level 1: Trial run}
