@@ -1,0 +1,19 @@
+1. Tone down our claim in section 1 be less ambitious. The revised version now include a positive and negative aspects of our findings.
+
+2. We stop refer to our user study as game, rather, chose more precise wordings such as gamified user study, or just user study. 
+
+3. Added a section after Introduction to illustrate the characteristics of type systems in functional programming languages 
+
+4. Added Section Structure on Related work and Discussions
+
+5. Improved related work by include another relavant research `Just TYPEical: Visualizing Common Function Type Signatures in R` 
+
+6. Strengthened the wirting of Discussions by including more concrete examples in the applications of GeckoGraph
+
+7 Shortened Figure 1 caption
+
+8. Added a transitional paragraph between design goals and detailed GeckoGraph features
+
+9. Improved the text that explain type classes in 3.1
+
+10. Removed figure4
