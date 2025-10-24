@@ -1,19 +1,25 @@
-1. Tone down our claim in section 1 be less ambitious. The revised version now include a positive and negative aspects of our findings.
+Revision Summary
 
-2. We stop refer to our user study as game, rather, chose more precise wordings such as gamified user study, or just user study. 
+The claims in the Abstract, Introduction, and Conclusion sections have been moderated to present a more balanced perspective. The revised version now discusses both the positive and negative aspects of our findings.
 
-3. Added a section after Introduction to illustrate the characteristics of type systems in functional programming languages 
+References to our user study as a “game” have been removed. We now use more precise terminology such as “gamified user study” or simply “user study.”
 
-4. Added Section Structure on Related work and Discussions
+A new section, Type Systems in Functional Languages, is added after the Introduction to provide background knowledge and better motivate the design of GeckoGraph.
 
-5. Improved related work by include another relavant research `Just TYPEical: Visualizing Common Function Type Signatures in R` 
+Added Section Structure overviews to both the Related Work and Discussion sections to improve clarity and reader navigation.
 
-6. Strengthened the wirting of Discussions by including more concrete examples in the applications of GeckoGraph
+The Related Work section has been expanded to include an additional relevant study: “Just TYPEical: Visualizing Common Function Type Signatures in R.”
 
-7 Shortened Figure 1 caption
+The Discussion section has been strengthened with more concrete examples illustrating the potential applications of GeckoGraph.
 
-8. Added a transitional paragraph between design goals and detailed GeckoGraph features
+Figure captions have been shortened throughout the manuscript for conciseness and consistency.
 
-9. Improved the text that explain type classes in 3.1
+Added a transitional paragraph between the Design Goals and the detailed GeckoGraph Features to improve flow.
 
-10. Removed figure4
+The explanation of Type Classes in Section 3.1 (Section 2.1 of the previous version) has been clarified and refined.
+
+Removed a redundant figure (Figure 4 in the previous version) that did not contribute meaningful information to the paper.
+
+Fixed the a number of wrong references to Figure 7 (Figure 8 in the previous version) due to LaTex syntax error.
+
+Various cosmetic edits were made, including improvements to grammar, spelling, LaTeX syntax, and overall logical coherence.
