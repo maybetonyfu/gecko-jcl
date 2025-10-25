@@ -18,74 +18,112 @@ We hope our revisions satisfactorily address all concerns and that the paper is 
 Sincerely,
 
 Authors of "GeckoGraph: A Visual Language for Polymorphic Types"
-
 \section{Summary of Major Revisions}
 
-\paragraph{Balanced claims} – We have now moderated the tone in the Abstract, Introduction, and Conclusion to be less ambitious and more balanced, explicitly acknowledging both the strengths and limitations of our findings.
+\paragraph{Balanced claims} We have moderated the tone in the \textit{Abstract}, \textit{Introduction}, and \textit{Conclusion} to present a more balanced and evidence-based discussion, explicitly acknowledging both the strengths and limitations of our findings.
 
-\paragraph{Terminology refinement} – We have now replaced references to the user study as a “game” with more precise wording, such as “gamified user study” or simply “user study.”
+\paragraph{Terminology refinement} We have replaced references to the user study as a “game” with more accurate terms such as “gamified user study” or simply “user study,” to avoid overstating the level of interactivity.
 
-\paragraph{New background section} – We have now added a new section, Type Systems in Functional Languages, after the Introduction to provide theoretical background and motivate the design of GeckoGraph.
+\paragraph{New background section} We have added a new section, \textit{Type Systems in Functional Languages}, following the \textit{Introduction} to provide theoretical background and better motivate the design of GeckoGraph.
 
-\paragraph{Section structure overviews} – We have now added section structure overviews at the beginning of the Related Work and Discussion sections to better guide the reader.
+\paragraph{Section structure overviews} We have introduced short structural overviews at the beginning of the \textit{Related Work} and \textit{Discussion} sections to help guide readers through their organization.
 
-\paragraph{Expanded related work} – We have now discussed the relevant study “Just TYPEical: Visualizing Common Function Type Signatures in R” to strengthen the discussion of related approaches and compare to our own contributions.
+\paragraph{Expanded related work} We have extended the \textit{Related Work} section to include additional references, notably the paper “Just TYPEical: Visualizing Common Function Type Signatures in R,” and used it to better position GeckoGraph among related visualization approaches.
 
-\paragraph{Enhanced discussion} – We have now improved the Discussion section with more concrete examples demonstrating the potential applications of GeckoGraph.
+\paragraph{Enhanced discussion} The \textit{Discussion} section has been revised to include more concrete examples demonstrating potential applications of GeckoGraph.
 
-\paragraph{Concise figure captions} – We have shortened our figure captions throughout the manuscript for readability and stylistic consistency.
+\paragraph{Concise figure captions} All figure captions have been shortened for clarity, readability, and stylistic consistency.
 
-\paragraph{Improved flow between sections} – We have added a transitional paragraph linking the Design Goals and Detailed GeckoGraph Features subsections in Section 3.1.
+\paragraph{Improved flow between sections} A transitional paragraph has been added to connect the \textit{Design Goals} and \textit{Detailed GeckoGraph Features} subsections in Section~3.1, improving the logical flow of ideas.
 
-\paragraph{Clarified explanation of type classes} – We have now refined the text in Section 3.1 to improve clarity when explaining type classes.
+\paragraph{Clarified explanation of type classes} The explanation of type classes in Section~3.1 has been rewritten in simpler language with improved examples. Figure~3 now includes concrete illustrations to support the description.
 
-\paragraph{Removed unused figure} – We removed Figure 4 from the previous version, as it did not add new information to the paper.
+\paragraph{Removed unused figure} We removed the previous Figure~4, as it did not contribute additional information to the paper.
 
-\paragraph{Cosmetic and consistency edits} – We improved our grammar, spelling, LaTeX syntax, and overall logical coherence across the manuscript.
+\paragraph{Cosmetic and consistency edits} Grammar, spelling, LaTeX syntax, and stylistic consistency have been carefully reviewed and corrected throughout the manuscript.
 
-\section{Detailed Responses to Reviewers
-Response to Reviewer 1}
+\section{Detailed Responses to Reviewers}
 
-\pointRaised{Comment 1:}{ The manuscript’s tone in the abstract and conclusion appears overly strong given the presented evidence.}
+\subsection*{Response to Reviewer 1}
 
-\reply We appreciate this observation. We have moderated the language in the Abstract, Introduction, and Conclusion to ensure our claims are proportionate to the results, and to present both positive and negative aspects of our findings.
+\pointRaised{Comment 1:}{The manuscript’s tone in the abstract and conclusion appears overly strong given the presented evidence.}
+
+\reply We appreciate this observation. The language in the \textit{Abstract}, \textit{Introduction}, and \textit{Conclusion} has been moderated to ensure that claims are proportionate to the results and that both positive and negative aspects of our findings are clearly presented.
 
 \pointRaised{Comment 2:}{The term “game” used to describe the user study could be misleading.}
 
-\reply We agree that we don't meet all the expectations for a game, and it's more appropriate to frame it as "an entertaining coding challenge". We changed our word of choice for “game” to “gamified user study” or simply, “user study”.  
+\reply We agree. The tasks in our study do not fully meet the criteria for a “game.” We now describe it more accurately as a “gamified user study” or simply a “user study,” emphasizing its educational and experimental nature.
 
-\pointRaised{Comment 3:}{The paper lacks sufficient background on type systems in functional languages.}
+\pointRaised{Comment 3:}{Please clarify the explanation of type classes.}
 
-\reply We have added a new section titled Type Systems in Functional Languages immediately following the Introduction. This section introduces relevant concepts and better motivates the design of GeckoGraph.
+\reply The subsection on type classes (Section~3.1) has been rewritten for clarity and supported by clearer examples. Figure~3 has also been improved to include illustrative examples that reinforce our description of GeckoGraph.
 
-\pointRaised{Comment 4:}{Please clarify the explanation of type classes.}
+\pointRaised{Comment 4:}{Issues with figures and references.}
 
-\reply The subsection explaining type classes (Section 3.1) has been rewritten for clarity, with simpler language and improved examples.
+\reply The previous Figure~4 has been removed. Incorrect cross-references such as “Fig.~2.2” have been corrected (now “Fig.~8”). Repetitions such as “Appendix Appendix~A” have been fixed.
 
-\section{Response to Reviewer 2}
+\pointRaised{Comment 5:}{Temper the narrative of qualitative results—the data show neutral user opinions.}
 
-\pointRaised{Comment 1:}{The related work section could benefit from additional references and a clearer structure.}
+\reply We have clarified the neutrality of participants’ overall feedback and added clearer indicators of sentiment (e.g., “slightly positive,” “moderately negative”) to reflect the scale values more accurately.
 
-\reply We have expanded the Related Work section to include “Just TYPEical: Visualizing Common Function Type Signatures in R” and added an introductory overview to outline its structure.
+\pointRaised{Comment 6:}{Clarify speculative claims in the Discussion.}
 
-\pointRaised{Comment 2:}{The discussion section is abstract and lacks concrete examples.}
+\reply We now explicitly mark speculative interpretations in Section~6 (\textit{Discussion}) with leading phrases such as “We hypothesize that...”.
 
-\reply We have revised the Discussion section to include several new examples illustrating potential applications of GeckoGraph.
+\pointRaised{Comment 7:}{Wording and grammar issues.}
 
-\pointRaised{Comment 3:}{Some figures and captions are overly detailed.}
+\reply We have corrected numerous stylistic and grammatical errors, including:
+“expressiveness power” → “expressiveness”,
+“high-order function” → “higher-order function”,
+and “GechoGraph” → “GeckoGraph.”  
+Unclear terms such as “tangibly” and “regular higher-order function” have been clarified or replaced with precise expressions and supported with examples.  
+We also removed unnecessary spaces before footnote labels.
 
-\reply We have shortened all figure captions for conciseness and removed Figure 4 from the earlier version, as it did not contribute additional insight.
+\subsection*{Response to Reviewer 2}
 
-\pointRaised{omment 4:}{The paper’s flow between sections feels abrupt.}
+\pointRaised{Comment 1:}{The paper lacks sufficient background on type systems in functional languages.}
 
-\reply We added a transitional paragraph between the Design Goals and Detailed GeckoGraph Features sections to improve narrative flow.
+\reply We have added a new section titled \textit{Type Systems in Functional Languages} immediately after the \textit{Introduction}. This section introduces key theoretical concepts and motivates the design rationale for GeckoGraph.
 
-\pointRaised{Comment 5:}{Minor issues with grammar, formatting, and coherence.}
+\pointRaised{Comment 2:}{The related work section could benefit from additional references and a clearer structure.}
 
-\reply We have now carefully proofread the entire manuscript, correcting grammatical errors, LaTeX syntax issues, and improving overall readability.
+\reply We have expanded and reorganized the \textit{Related Work} section, including new references such as “Just TYPEical: Visualizing Common Function Type Signatures in R.” A short overview paragraph now outlines the section’s structure and focus.
 
+\pointRaised{Comment 3:}{The discussion section is abstract and lacks concrete examples.}
 
+\reply We have revised the \textit{Discussion} section to include additional examples illustrating practical applications of GeckoGraph. Figure~14 has been added to support this discussion.
 
+\pointRaised{Comment 4:}{Begin Sec.~5 (“Discussion”) and Sec.~6 (“Related Work”) with overview paragraphs explaining purpose and structure.}
+
+\reply Overview paragraphs have been added at the start of both sections to help orient readers and clarify how each section is organized.
+
+\pointRaised{Comment 5:}{Usage of figures.Some figures (1,3,10,14 previous version) captions are too long. Figure 4 is hard to understand and its purpose is unclear.}
+
+\reply Long figure captions have been shortened for conciseness. The previous Figure~4, which did not contribute new insights, has been removed.
+
+\pointRaised{Comment 6:}{The paper’s flow between sections feels abrupt.}
+
+\reply We have added a transitional paragraph between the \textit{Design Goals} and \textit{Detailed GeckoGraph Features} subsections in Section~3 to improve the narrative flow.
+
+\pointRaised{Comment 7:}{Minor issues with grammar, formatting, and coherence.}
+
+\reply The manuscript has been carefully proofread to correct grammatical and LaTeX syntax errors and improve readability.  
+Examples include correcting figure references (e.g., “Fig.~2.2” → “Fig.~8”), fixing duplicate words (“Appendix Appendix~A” → “Appendix~A”), and removing extra spaces before footnote labels.
+
+\pointRaised{Comment 8:}{Clarify user tasks and results in Figures 9 and 10.}
+
+\reply We have clarified that the user in Figures~9 and~10 did not reach the correct solution and explained how GeckoGraph’s visual feedback can help identify and correct such mistakes. We also fixed a typo in Figure~9, changing “runHero z” to “runZero z.”
+
+\pointRaised{Comment 9:}{Clarify whether participants indicate their experience once or before each run.}
+
+\reply We clarified that participants report their programming experience once, before beginning the tasks.
+
+\pointRaised{Comment 10:}{Distinguish between empirical findings and authors’ interpretations in the Discussion.}
+
+\reply We now explicitly distinguish between observed results and speculative interpretations in the \textit{Discussion}, using clear phrases such as “We hypothesize that...” to signal interpretive commentary.
+
+\pointRaised{Comment 10:}{Add reference for “between-subject design.”}
+
+\reply We now correctly cite Fisher, R.A. {\it The Design of Experiements} for the phase "between-subject design."
 
 \end{document}
-

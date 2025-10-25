@@ -49,7 +49,7 @@
 
 %% Abstract
 \begin{abstract}
-Polymorphic type is an important feature in most strongly typed programming languages. They allow functions to be written in a way that can be used with different data types, while still enforcing the relationship and constraints between the values. However, programmers often find polymorphic types difficult to use and understand, and tend to reason with a mindset of concrete types. We propose GeckoGraph, a graphical notation for types. GeckoGraph aims to complement traditional text-based type notation by making reading, understanding, and comparing types easier. We conducted a large-scale user study using GeckoGraph, comparing it to text-based type notation. To our knowledge, this is the largest controlled user study on functional programming ever conducted. 
+Polymorphic type is an important feature in most strongly typed programming languages. They allow functions to be written in a way that can be used with different data types, while still enforcing the relationship and constraints between the values. However, programmers often find polymorphic types difficult to use and understand, and tend to reason in terms of concrete types. We propose GeckoGraph, a graphical notation for types. GeckoGraph aims to complement traditional text-based type notation by making reading, understanding, and comparing types easier. We conducted a large-scale user study comparing GeckoGraph to text-based type notation. To our knowledge, this is the largest controlled user study on functional programming ever conducted. 
 The results show no overall significant differences in task completion time or success rate. However, we observed a modest improvement in success rate among beginner participants. For the most challenging task, GeckoGraph improved success rates by 14.5\% for beginners and 11.2\% for less experienced users. These findings suggest that GeckoGraph has potential as a teaching and learning aid for polymorphic type systems.
 \end{abstract}
 
@@ -69,22 +69,24 @@ Polymorphic Types \sep Functional Programming \sep Visual Languages \sep Visuali
 \linenumbers
 
 \section{Introduction} \label{sec:intro}
-In programming languages, a polymorphic type \cite{Cardelli1987-fp} can represent values of different types while providing an interface to describe common behaviors for those values. Polymorphic types are one of the oldest topics in programming language theory \cite{Cardelli1987-fp}. They are central to the succinctness of statically-typed languages, while also enabling a high degree of type-safe abstraction and reusability. Polymorphic types are available in many programming languages, from functional languages such as Haskell and ML to imperative and multi-paradigm languages such as Rust\cite{Klabnik_undated-wx} and Go\cite{Griesemer_undated-ff}.
+In programming languages, a polymorphic type \cite{Cardelli1987-fp} can represent values of different types while providing an interface to describe common behaviors for those values. Polymorphic types are one of the oldest topics in programming language theory \cite{Cardelli1987-fp}. They are central to the succinctness of statically typed languages while also enabling a high degree of type-safe abstraction and reusability. Polymorphic types are available in many programming languages, from functional languages such as Haskell and ML to imperative and multi-paradigm languages such as Rust\cite{Klabnik_undated-wx} and Go\cite{Griesemer_undated-ff}.
 
 % Polymorphism allows programs to be written in a way that is more generic and adaptable to different data types, enabling greater flexibility and code reuse. Polymorphic types are ideal for modeling abstractions, such as properties of mathematical objects and laws that hold on these objects. 
 
-While promoting robustness and code reusability, polymorphic types present challenges in learning and comprehension, particularly for novice users \cite{Jun2000-ec, Jun2000-yu}; as it is often argued that the expressiveness power of type systems often comes at the cost of their usability~\cite{Hage2020-hg}. Research indicates that humans tend to focus on concrete types and rely on polymorphic type checking only as a last resort. Moreover, polymorphic types often complicate type error usability. During type checking, compilers frequently generate new polymorphic type variables temporarily. These variables are typically discarded after type checking unless a type error occurs, in which case they are referenced in error messages. Consequently, programmers often face the task of resolving type errors involving type variables they did not explicitly author (Fig. \ref{fig:example-foldable}). Unfortunately, not many studies focus on the \textit{usability} of polymorphic types. 
+While promoting robustness and code reusability, polymorphic types present challenges in learning and comprehension, particularly for novice users \cite{Jun2000-ec, Jun2000-yu}; as it is often argued that the expressiveness of type systems often comes at the cost of their usability~\cite{Hage2020-hg}. Research indicates that humans tend to focus on concrete types and rely on polymorphic type checking only as a last resort. Moreover, polymorphic types often complicate the usability of type errors. During type checking, compilers frequently generate new polymorphic type variables temporarily. These variables are typically discarded after type checking unless a type error occurs, in which case they are referenced in error messages. Consequently, programmers often face the task of resolving type errors involving type variables they did not explicitly author (Fig. \ref{fig:example-foldable}). Unfortunately, not many studies focus on the \textit{usability} of polymorphic types. 
 
 \begin{figure}[]
   \includegraphics[width=\linewidth]{figures/Foldable}
   \caption{\label{fig:example-foldable} An example type error where a programmer mistakenly provided a \texttt{Char} instead of a \texttt{String} literal. {\bf Left:} Original type error. {\bf Right:} Type error with GeckoGraph}
 \end{figure}
 
- We aim to investigate the challenges of using polymorphic types and explore how to improve their usability with visualization and modern Human-Computer Interaction (HCI) techniques. In this paper, we propose GeckoGraph, a graphical notation for types. GeckoGraph aims to complement traditional text-based type notation and make reading, understanding, and comparing types easier. GeckoGraph is prototyped and verified iteratively, leading to a design with visual clarity applicable to many programming contexts. 
+ We aim to investigate the challenges of using polymorphic types and explore how to improve their usability with visualization and modern Human-Computer Interaction (HCI) techniques. In this paper, we propose GeckoGraph, a graphical notation for types. GeckoGraph aims to complement traditional text-based type notation and make reading, understanding, and comparing types easier. GeckoGraph is prototyped and iteratively verified, resulting in a design with visual clarity applicable across many programming contexts. 
  To evaluate its effectiveness, we conducted a large-scale user study comparing GeckoGraph with standard text-based type notation. To our knowledge, this represents the largest controlled user study on functional programming to date.
 The results show no overall significant differences in task completion time or success rate. However, we observed a modest improvement in success rate among beginner participants. For the most challenging task, GeckoGraph improved success rates by 14.5\% for beginners and 11.2\% for less experienced users. These findings suggest that GeckoGraph has potential as a teaching and learning aid for polymorphic type systems.
 
-\section{Type Systems in Functional Programming}
+% In Section~\ref{sec:type-systems}, we review key type system features in functional programming languages, many of which have recently been adopted by object-oriented and multi-paradigm languages. We highlight how these features enable flexible abstraction and expressive type modeling, while sometimes hindering usability for beginners. Section~\ref{sec:gecko-graph} presents the design of GeckoGraph, illustrating how it visualizes complex type-level information that is often implicit or hard to interpret textually. Section~\ref{sec:evaluation} describes our user study, ZeroToHero, a series of 10 programming challenges, along with the study design, recruitment, and hypotheses. Section~\ref{sec:results} reports quantitative and qualitative findings, including completion time, success rates, and participant feedback. In Section~\ref{sec:discussion}, we interpret these results, discuss GeckoGraph’s benefits and usability challenges, and explore potential applications. Section~\ref{sec:related-work} reviews related visualization research, and Section~\ref{sec:conclusion} summarizes our contributions and outlines future directions.
+
+\section{Type Systems in Functional Programming} \label{sec:type-systems}
 
 Functional programming languages have a rich history of embracing strong type systems and pioneering advanced type system features \cite{Milner1978-ob, MacQueen2020-qn, Hudak2007-kn}. In functional programming languages, type systems are often more expressive and provide stronger safety guarantees. They enable programmers to model program behavior rigorously and enforce correctness at compile time. Common characteristics of type systems in functional programming include structural typing, algebraic data types, parametric polymorphism, and type inference.
 
@@ -116,7 +118,7 @@ Functional languages such as Haskell and ML go further, using global type infere
 {\it To summarize}, the type systems of functional programming languages provide rigorous tools for specifying and enforcing program behavior. By encoding system constraints directly in types, they prevent many classes of runtime errors. However, this rigor introduces trade-offs: a steeper learning curve and less flexibility for exploratory or prototype development. In the following sections, we explore how GeckoGraph supports these type-system features by visualizing type-level information that is often implicit or difficult for humans to interpret.
 
 
-\section{GeckoGraph}
+\section{GeckoGraph} \label{sec:gecko-graph}
 
 GeckoGraph is a visual notation for type annotations in statically typed programming languages. It is intended to work tangibly with text-based annotations but uses colors, shapes, and symbols to make structures of types easy to identify at a glance. In this section, we describe the design of GeckoGraph and highlight some unique benefits of programming with GeckoGraph.
 
@@ -237,13 +239,12 @@ We illustrate the tasks of the user study using levels 2 and 3 as examples. For 
 In level 3 (Fig. \ref{fig:level3}),  players need to implement the function {\tt zeroToHero :: Zero a -> Hero (a, a)}.  In this level, not all provided functions are useful. In particular,  players must discover that only \texttt{f1} and \texttt{f3} are necessary to produce the desired results. One implementation that satisfies the target type is \texttt{zeroTohero z = f3 (f1 z)}. Another possible implementation is {\tt zeroToHero z = f3 . f1 \$ z}, exercising the Haskell function composition idioms. Again, the user illustrated in Fig. \ref{fig:level3} did not reach a correct solution, as the type signature and GeckoGraphs in {\it To Implement} and {\it Your Result} do not match.
 
 
-
 \subsection{Recruitment}
 Participants were recruited online through the Haskell community on Reddit and Discord. Participation is fully anonymized; detailed ethical implications of these experiments were reviewed and approved by the IRB of the authors' institution.
 
 \subsection{Group Assignments}
 
-Participants are assigned to one of two groups (A and B). The experiment uses a between-subjects design.  The tasks assigned to the two groups are the same. All participants receive both treatments (with and without GeckoGraph) during their runs, but in a different order.   {\bf Group A} is assisted by GeckoGraph on even levels and text-based type annotation on odd levels. {\it Group B} is assisted by text-based type annotation on even levels and GeckoGraph on odd levels. The number of participants in the two groups is counterbalanced.
+Participants are assigned to one of two groups (A and B). The experiment uses between-subjects design \cite{Fisher1949-fn}.  The tasks assigned to the two groups are the same. All participants receive both treatments (with and without GeckoGraph) during their runs, but in a different order.   {\bf Group A} is assisted by GeckoGraph on even levels and text-based type annotation on odd levels. {\it Group B} is assisted by text-based type annotation on even levels and GeckoGraph on odd levels. The number of participants in the two groups is counterbalanced.
 
 \subsection{Hypothesis}
 In programming tasks that involve reading and understanding polymorphic types, graphic notation using visual elements that provide higher grouping strength (colors, shapes, sizes, and symbols) can improve the performance of such tasks compared to traditional text-based type notation. Our null hypothesis is: {\it Using graphic notation has no effect compared to traditional text-based type notation.} This hypothesis and the task design were registered at the Open Science Foundation prior to data collection \cite{Stuckey2023-vl}. 
@@ -258,7 +259,7 @@ During the study, the time spent by participants on each task is recorded. We al
 
 Data collection of the study was stopped after the planned cut-off period of 14 days. After the cut-off date, the ZeroToHero website is open-sourced and available for free evaluation\footnote{https://zerotohero.fly.dev}, and repeating our experiment. However, no further data was collected. 
 
-\section{Results}
+\section{Results} \label{sec:results}
 
 During the data collection period, a total of 714 users participated in the study. Among them, 245 are novice users, 216 are familiar with Haskell, 216 are knowledgeable users, and 88 are expert users. 
 
@@ -317,13 +318,13 @@ Although we justified the use of skips in Section \ref{subsection:task}, the ava
 \section{Discussion} \label{sec:discussion}
 
 This section discusses the main findings and implications of our study. 
-We begin by outlining the strengths of GeckoGraph observed from both quantitative and qualitative results (Section~\ref{sec:discussion:strengths}). 
+We speculate the strengths of GeckoGraph observed from both quantitative and qualitative results (Section~\ref{sec:discussion:strengths}). 
 We then discuss the limitations of the current design (Section~\ref{sec:discussion:weaknesses}) and reflect on the gamified nature of our user study (Section~\ref{sec:discussion:gamification}). 
 Finally, we identify potential applications of GeckoGraph in programming tools, documentation, and education (Section~\ref{sec:discussion:applications}).
 
 \subsection{Strengths}\label{sec:discussion:strengths}
-Overall, our experimental results show no statistically significant difference in task completion time between conditions with and without GeckoGraph. However, we find that using GeckoGraph shows a significant albeit moderate effect on the task success rates for beginners. Particularly, in the hardest task (task 10), GeckoGraph improved the success rates across the two less experienced user groups by 14.5\% and 11.2\%, respectively. 
-To interpret the observed advantages, we discuss the practical benefits that GeckoGraph offers to programmers.
+Overall, our experimental results show no statistically significant difference in task completion time between conditions with and without GeckoGraph. However, we find that using GeckoGraph shows a significant, albeit moderate, effect on task success rates for beginners. In particular, on the hardest task (task 10), GeckoGraph improved the success rates across the two less experienced user groups by 14.5\% and 11.2\%, respectively. 
+To interpret the observed advantages, we hypothesize the practical benefits that GeckoGraph offers to programmers.
 
 \subsubsection{Identifying the Most Important Features}
 Qualitative feedback revealed that programmers found GeckoGraph particularly helpful for spotting patterns and identifying important features in type signatures. 
@@ -385,8 +386,15 @@ In our context, it helped attract a diverse set of participants across a wide ra
 
 \subsubsection{Programming Assistance}
 Post-study feedback highlighted a strong interest in integrating GeckoGraph into programming environments. 
-Modern IDEs already allow users to inspect expression types via hover tooltips; GeckoGraph could enhance this feature by visualizing type structures directly in the tooltip. 
-Similarly, GeckoGraph could be used to visualize mismatched parts of conflicting types during compilation errors, as illustrated in Fig.~\ref{fig:example-foldable}.
+Modern IDEs already allow users to inspect expression types via hover tooltips; GeckoGraph could enhance this feature by visualizing type structures directly in the tooltip, as envisioned in Fig.~\ref{fig:application} (Left). 
+Similarly, GeckoGraph could be used to visualize mismatched parts of conflicting types during compilation errors, as illustrated in Fig.~\ref{fig:application} (Right).
+
+\begin{figure}[]
+  \includegraphics[width=\linewidth]{figures/Application.png}
+  \caption{\label{fig:application} 
+ {\bf Envisioning GeckoGraph as programming assistance}. (Left) Display GeckoGraph as type hints; (Right) Visualize mismatched types with GeckoGraph. }
+\end{figure}
+
 
 \subsubsection{Documentation Assistance}
 Our findings suggest GeckoGraph would be highly effective for visualizing function types in API documentation and programming libraries. 
@@ -410,7 +418,7 @@ GeckoGraph reveals these higher-kinded types visually, exposing partially applie
 \end{figure}
 
 
-\section{Related work}
+\section{Related work} \label{sec:related-work}
 This section reviews prior work in three areas relevant to this research. First, we examine approaches to the visualization of types in programming languages. 
 We then broaden our view to general visualization techniques applied to programming environments, including topics like memory allocation and change history. Finally, we review studies comparing visual and textual representations in programming education and environments.
 
@@ -472,7 +480,7 @@ Both systems report positive effects of visual augmentation.
 Although GeckoGraph also combines visual and textual representations, it differs in that prior studies focused on imperative languages such as Java and Python, whereas our evaluation investigates its effect in a functional programming context (Haskell).
 
 
-\section{Conclusion and Future Work}
+\section{Conclusion and Future Work} \label{sec:conclusion}
 In this paper, we propose GeckoGraph, a graphical notation for type annotations in functional programming languages. GeckoGraph aims to complement traditional text-based type notation by making reading, understanding, and comparing types easier. We conducted a large-scale human study using GeckoGraph, comparing it to text-based type notation. This is the largest user study on functional programming we are aware of. Although no significant effect was found on the overall time to complete each programming task, we found a modest effect on the success rate in the beginner group. In one of the more difficult programming tasks, we find that GeckoGraph significantly improves the success rate by 14.5\% for beginners and 11.2\% for less experienced programmers.
 
 Our work in this area opens many new directions for future research.  In particular:
