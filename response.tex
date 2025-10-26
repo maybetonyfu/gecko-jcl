@@ -41,100 +41,101 @@ Authors of "GeckoGraph: A Visual Language for Polymorphic Types"
 \paragraph{Removed unused figure} We removed the previous Figure~4, as it did not contribute additional information to the paper.
 
 \paragraph{Cosmetic and consistency edits} Grammar, spelling, LaTeX syntax, and stylistic consistency have been carefully reviewed and corrected throughout the manuscript.
-
 \section{Detailed Responses to Reviewers}
 
 \subsection*{Response to Reviewer 1}
 
-\pointRaised{Comment 1:}{The manuscript’s tone in the abstract and conclusion appears overly strong given the presented evidence.}
+\pointRaised{Comment 1:}{(Abstract, Introduction, Conclusion – Major) The manuscript’s tone in the Abstract and Conclusion appears overly strong given the presented evidence.}
 
-\reply We appreciate this observation. The language in the \textit{Abstract}, \textit{Introduction}, and \textit{Conclusion} has been moderated to ensure that claims are proportionate to the results and that both positive and negative aspects of our findings are clearly presented.
+\reply We appreciate this observation. The language in the \textit{Abstract}, \textit{Introduction}, and \textit{Conclusion} has been moderated to ensure that claims are proportionate to the results. The revised version now presents both the positive and negative aspects of our findings.
 
-\pointRaised{Comment 2:}{The term “game” used to describe the user study could be misleading.}
+\pointRaised{Comment 2:}{(Overall) The term “game” used to describe the user study could be misleading.}
 
 \reply We agree. The tasks in our study do not fully meet the criteria for a “game.” We now describe it more accurately as a “gamified user study” or simply a “user study,” emphasizing its educational and experimental nature.
 
-\pointRaised{Comment 3:}{Please clarify the explanation of type classes.}
+\pointRaised{Comment 3:}{(Section 3.1) Clarify the explanation of type classes.}
 
 \reply The subsection on type classes (Section~3.1) has been rewritten for clarity and supported by clearer examples. Figure~3 has also been improved to include illustrative examples that reinforce our description of GeckoGraph.
 
-\pointRaised{Comment 4:}{Issues with figures and references.}
+\pointRaised{Comment 4:}{(Section 3) Clarify the syntactic sugar of curried functions.}
 
-\reply The previous Figure~4 has been removed. Incorrect cross-references such as “Fig.~2.2” have been corrected (now “Fig.~8”). Repetitions such as “Appendix Appendix~A” have been fixed.
+\reply We now explicitly clarify that the function notation \texttt{a -> b -> c} desugars to \texttt{a -> (b -> c)}, which is consistently represented in GeckoGraph.
 
-\pointRaised{Comment 5:}{Temper the narrative of qualitative results—the data show neutral user opinions.}
+\pointRaised{Comment 5:}{(Section 3) Figure 3: The second higher-order function type {\tt ((a -> b) -> b)} is tagged as binary but is unary.}
 
-\reply We have clarified the neutrality of participants’ overall feedback and added clearer indicators of sentiment (e.g., “slightly positive,” “moderately negative”) to reflect the scale values more accurately.
+\reply We agree that the previous figure was confusing. Figure~4 (previously Figure~3) has been simplified for readability.
 
-\pointRaised{Comment 6:}{Clarify speculative claims in the Discussion.}
+\pointRaised{Comment 6:}{(Section 3) Issues with figures and references.}
 
-\reply We now explicitly mark speculative interpretations in Section~6 (\textit{Discussion}) with leading phrases such as “We hypothesize that...”.
+\reply The previous Figure~4 has been removed. Incorrect cross-references such as “Fig.~2.2” have been corrected (now “Fig.~8”), and redundant phrases like “Appendix Appendix~A” have been fixed.
 
-\pointRaised{Comment 7:}{Wording and grammar issues.}
+\pointRaised{Comment 7:}{(Section 5) Temper the narrative of qualitative results—the data show neutral user opinions.}
 
-\reply We have corrected numerous stylistic and grammatical errors, including:
+\reply We have clarified that participants’ feedback was overall neutral. Descriptors such as “slightly positive” and “moderately negative” are now used to reflect sentiment values more precisely.
+
+\pointRaised{Comment 8:}{(Section 6) Clarify speculative claims in the Discussion.}
+
+\reply We now explicitly mark speculative interpretations in Section~6 (\textit{Discussion}) using leading phrases such as “We hypothesize that...”.
+
+\pointRaised{Comment 9:}{(Overall) Wording and grammar issues.}
+
+\reply We have corrected numerous stylistic and grammatical issues, including:
 “expressiveness power” → “expressiveness”,
-“high-order function” → “higher-order function”,
+“high-order function” → “higher-order function,”
 and “GechoGraph” → “GeckoGraph.”  
-Unclear terms such as “tangibly” and “regular higher-order function” have been clarified or replaced with precise expressions and supported with examples.  
-We also removed unnecessary spaces before footnote labels.
+Unclear expressions such as “tangibly” and “regular higher-order function” have been revised or replaced with precise terms, and unnecessary spaces before footnotes have been removed.
 
-\pointRaised{Comment 8:}{Clairify the syntactic sugar of curried function (Section 3)}
-
-\reply We explicitly clarify that function notation \texttt{a -> b -> c } desugars to \texttt{a -> (b -> c) }, which has a consistent representation in GeckoGraph.
 
 \subsection*{Response to Reviewer 2}
 
-\pointRaised{Comment 1:}{The paper lacks sufficient background on type systems in functional languages.}
+\pointRaised{Comment 1:}{(Section 1) Add a concluding paragraph in the Introduction describing the article’s organization.}
+
+\reply We agree. A short paper-structure overview has been added at the end of Section~1 to guide the reader through the paper’s organization.
+
+\pointRaised{Comment 2:}{(Section 2) The paper lacks sufficient background on type systems in functional languages.}
 
 \reply We have added a new section titled \textit{Type Systems in Functional Languages} immediately after the \textit{Introduction}. This section introduces key theoretical concepts and motivates the design rationale for GeckoGraph.
 
-\pointRaised{Comment 2:}{The related work section could benefit from additional references and a clearer structure.}
+\pointRaised{Comment 3:}{(Section 3) The paper’s flow between subsections feels abrupt.}
 
-\reply We have expanded and reorganized the \textit{Related Work} section, including new references such as “Just TYPEical: Visualizing Common Function Type Signatures in R.” A short overview paragraph now outlines the section’s structure and focus.
+\reply We have added a transitional paragraph between the \textit{Design Goals} and \textit{Detailed GeckoGraph Features} subsections in Section~3 to improve narrative flow.
 
-\pointRaised{Comment 3:}{The discussion section is abstract and lacks concrete examples.}
-
-\reply We have revised the \textit{Discussion} section to include additional examples illustrating practical applications of GeckoGraph. Figure~14 has been added to support this discussion.
-
-\pointRaised{Comment 4:}{Begin Sec.~5 (“Discussion”) and Sec.~6 (“Related Work”) with overview paragraphs explaining purpose and structure.}
-
-\reply Overview paragraphs have been added at the start of both sections to help orient readers and clarify how each section is organized.
-
-\pointRaised{Comment 5:}{Usage of figures.Some figures (1,3,10,14 previous version) captions are too long. Figure 4 is hard to understand and its purpose is unclear.}
-
-\reply Long figure captions have been shortened for conciseness. The previous Figure~4, which did not contribute new insights, has been removed.
-
-\pointRaised{Comment 6:}{The paper’s flow between sections feels abrupt.}
-
-\reply We have added a transitional paragraph between the \textit{Design Goals} and \textit{Detailed GeckoGraph Features} subsections in Section~3 to improve the narrative flow.
-
-\pointRaised{Comment 7:}{Minor issues with grammar, formatting, and coherence.}
-
-\reply The manuscript has been carefully proofread to correct grammatical and LaTeX syntax errors and improve readability.  
-Examples include correcting figure references (e.g., “Fig.~2.2” → “Fig.~8”), fixing duplicate words (“Appendix Appendix~A” → “Appendix~A”), and removing extra spaces before footnote labels.
-
-\pointRaised{Comment 8:}{Clarify user tasks and results in Figures 9 and 10.}
+\pointRaised{Comment 4:}{(Section 4) Clarify user tasks and results in Figures 9 and 10.}
 
 \reply We have clarified that the user in Figures~9 and~10 did not reach the correct solution and explained how GeckoGraph’s visual feedback can help identify and correct such mistakes. We also fixed a typo in Figure~9, changing “runHero z” to “runZero z.”
 
-\pointRaised{Comment 9:}{Clarify whether participants indicate their experience once or before each run.}
+\pointRaised{Comment 5:}{(Section 4) Clarify whether participants indicate their experience once or before each run.}
 
 \reply We clarified that participants report their programming experience once, before beginning the tasks.
 
-\pointRaised{Comment 10:}{Distinguish between empirical findings and authors’ interpretations in the Discussion.}
+\pointRaised{Comment 6:}{(Section 4) Add reference for “between-subject design.”}
 
-\reply We now explicitly distinguish between observed results and speculative interpretations in the \textit{Discussion}, using clear phrases such as “We hypothesize that...” to signal interpretive commentary.
+\reply We now correctly cite Fisher, R.A. \textit{The Design of Experiments} for the phrase “between-subject design.”
 
-\pointRaised{Comment 11:}{Add reference for “between-subject design.”}
+\pointRaised{Comment 7:}{(Section 6) The Discussion section is abstract and lacks concrete examples.}
 
-\reply We now correctly cite Fisher, R.A. {\it The Design of Experiements} for the phase "between-subject design."
+\reply We have revised the \textit{Discussion} section to include additional examples illustrating practical applications of GeckoGraph. Figure~14 has been added to support this discussion.
 
+\pointRaised{Comment 8:}{(Section 6 and 7) Begin Sections~6 (“Discussion”) and~7 (“Related Work”) with overview paragraphs explaining purpose and structure.}
 
-\pointRaised{Comment 12:}{Wording and grammar issues.}
+\reply Overview paragraphs have been added at the start of both sections to help orient readers and clarify their organization.
 
-\reply We have corrected numerous stylistic and grammatical errors, including:
-Unclear terms such as “approximity” and “during type errors” have been clarified or replaced with precise expressions and supported with examples.  
+\pointRaised{Comment 9:}{(Section 7) The Related Work section could benefit from additional references and a clearer structure.}
+
+\reply We have expanded and reorganized the \textit{Related Work} section, including new references such as “Just TYPEical: Visualizing Common Function Type Signatures in R.” A short overview paragraph now outlines the section’s focus and structure.
+
+\pointRaised{Comment 10:}{(Section 6) Distinguish between empirical findings and interpretations in the Discussion.}
+
+\reply We now explicitly distinguish between observed results and speculative interpretations in the \textit{Discussion}, using phrases such as “We hypothesize that...” to signal interpretive commentary.
+
+\pointRaised{Comment 11:}{(Overall) Usage of figures—some captions too long, Figure~4 unclear.}
+
+\reply Figure captions throughout the paper have been shortened for conciseness. The previous Figure~4, which did not add new insight, has been removed.
+
+\pointRaised{Comment 12:}{(Overall) Minor wording and grammar issues.}
+
+\reply The manuscript has been thoroughly proofread for grammar, formatting, and coherence.  
+Examples include corrected figure references (e.g., “Fig.~2.2” → “Fig.~8”), removal of redundant text (“Appendix Appendix~A” → “Appendix~A”), and clarification of unclear terms such as “approximity” and “during type errors.”
 
 
 \end{document}
