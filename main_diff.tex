@@ -1,7 +1,7 @@
 %% 
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL main_old.tex   Fri Oct 24 16:43:17 2025
-%DIF ADD main_new.tex   Fri Oct 24 16:41:40 2025
+%DIF DEL old.tex    Sun Oct 26 10:48:10 2025
+%DIF ADD main.tex   Sun Oct 26 10:46:10 2025
 %% Copyright 2007-2024 Elsevier Ltd
 %% 
 %% This file is part of the 'Elsarticle Bundle'.
@@ -56,6 +56,24 @@
 \let\sout@orig\sout %DIF PREAMBLE
 \renewcommand{\sout}[1]{\ifmmode\text{\sout@orig{\ensuremath{#1}}}\else\sout@orig{#1}\fi} %DIF PREAMBLE
 \makeatother %DIF PREAMBLE
+%DIF COLORLISTINGS PREAMBLE %DIF PREAMBLE
+\RequirePackage{listings} %DIF PREAMBLE
+\RequirePackage{color} %DIF PREAMBLE
+\lstdefinelanguage{DIFcode}{ %DIF PREAMBLE
+%DIF DIFCODE_UNDERLINE %DIF PREAMBLE
+  moredelim=[il][\color{red}\sout]{\%DIF\ <\ }, %DIF PREAMBLE
+  moredelim=[il][\color{blue}\uwave]{\%DIF\ >\ } %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstdefinestyle{DIFverbatimstyle}{ %DIF PREAMBLE
+	language=DIFcode, %DIF PREAMBLE
+	basicstyle=\ttfamily, %DIF PREAMBLE
+	columns=fullflexible, %DIF PREAMBLE
+	keepspaces=true %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim}{\lstset{style=DIFverbatimstyle}}{} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim*}{\lstset{style=DIFverbatimstyle,showspaces=true}}{} %DIF PREAMBLE
+\lstset{extendedchars=\true,inputencoding=utf8}
+
 %DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
 
 \begin{document}
@@ -78,7 +96,7 @@
 
 %% Abstract
 \begin{abstract}
-Polymorphic \DIFdelbegin \DIFdel{types are }\DIFdelend \DIFaddbegin \DIFadd{type is }\DIFaddend an important feature in most strongly typed programming languages. They allow functions to be written in a way that can be used with different data types, while still enforcing the relationship and constraints between the values. However, programmers often find polymorphic types difficult to use and understand\DIFaddbegin \DIFadd{, }\DIFaddend and tend to reason \DIFdelbegin \DIFdel{using }\DIFdelend \DIFaddbegin \DIFadd{with a mindset of }\DIFaddend concrete types. We propose GeckoGraph, a graphical notation for types. GeckoGraph aims to \DIFdelbegin \DIFdel{accompany }\DIFdelend \DIFaddbegin \DIFadd{complement }\DIFaddend traditional text-based type notation \DIFdelbegin \DIFdel{and to make }\DIFdelend \DIFaddbegin \DIFadd{by making }\DIFaddend reading, understanding, and comparing types easier. We conducted a large-scale \DIFdelbegin \DIFdel{human }\DIFdelend \DIFaddbegin \DIFadd{user }\DIFaddend study using GeckoGraph\DIFdelbegin \DIFdel{compared }\DIFdelend \DIFaddbegin \DIFadd{, comparing it }\DIFaddend to text-based type notation. To our knowledge, this is the largest controlled user study on functional programming ever conducted. 
+Polymorphic \DIFdelbegin \DIFdel{types are }\DIFdelend \DIFaddbegin \DIFadd{type is }\DIFaddend an important feature in most strongly typed programming languages. They allow functions to be written in a way that can be used with different data types, while still enforcing the relationship and constraints between the values. However, programmers often find polymorphic types difficult to use and understand\DIFaddbegin \DIFadd{, }\DIFaddend and tend to reason \DIFdelbegin \DIFdel{using }\DIFdelend \DIFaddbegin \DIFadd{in terms of }\DIFaddend concrete types. We propose GeckoGraph, a graphical notation for types. GeckoGraph aims to \DIFdelbegin \DIFdel{accompany }\DIFdelend \DIFaddbegin \DIFadd{complement }\DIFaddend traditional text-based type notation \DIFdelbegin \DIFdel{and to make }\DIFdelend \DIFaddbegin \DIFadd{by making }\DIFaddend reading, understanding, and comparing types easier. We conducted a large-scale \DIFdelbegin \DIFdel{human study using GeckoGraph compared }\DIFdelend \DIFaddbegin \DIFadd{user study comparing GeckoGraph }\DIFaddend to text-based type notation. To our knowledge, this is the largest controlled user study on functional programming ever conducted. 
 The results \DIFdelbegin \DIFdel{of the study show that GeckoGraph helps improve programmers' ability to succeed in the programming tasks we designed, especially for novice programmers. }\DIFdelend \DIFaddbegin \DIFadd{show no overall significant differences in task completion time or success rate. However, we observed a modest improvement in success rate among beginner participants. For the most challenging task, GeckoGraph improved success rates by 14.5\% for beginners and 11.2\% for less experienced users. These findings suggest that GeckoGraph has potential as a teaching and learning aid for polymorphic type systems.
 }\DIFaddend \end{abstract}
 
@@ -98,11 +116,11 @@ Polymorphic Types \sep Functional Programming \sep Visual Languages \sep Visuali
 \linenumbers
 
 \section{Introduction} \label{sec:intro}
-In programming languages, a polymorphic type \cite{Cardelli1987-fp} can represent values of different types while providing an interface to describe common behaviors for those values. Polymorphic types are one of the oldest topics in programming language theory \cite{Cardelli1987-fp}. They are central to the succinctness of statically-typed languages, while also enabling a high degree of type-safe abstraction and reusability. Polymorphic types are available in many programming languages, from functional languages such as Haskell and ML to imperative and multi-paradigm languages such as Rust\cite{Klabnik_undated-wx} and Go\cite{Griesemer_undated-ff}.
+In programming languages, a polymorphic type \cite{Cardelli1987-fp} can represent values of different types while providing an interface to describe common behaviors for those values. Polymorphic types are one of the oldest topics in programming language theory \cite{Cardelli1987-fp}. They are central to the succinctness of \DIFdelbegin \DIFdel{statically-typed languages , }\DIFdelend \DIFaddbegin \DIFadd{statically typed languages }\DIFaddend while also enabling a high degree of type-safe abstraction and reusability. Polymorphic types are available in many programming languages, from functional languages such as Haskell and ML to imperative and multi-paradigm languages such as Rust\cite{Klabnik_undated-wx} and Go\cite{Griesemer_undated-ff}.
 
 % Polymorphism allows programs to be written in a way that is more generic and adaptable to different data types, enabling greater flexibility and code reuse. Polymorphic types are ideal for modeling abstractions, such as properties of mathematical objects and laws that hold on these objects. 
 
-While promoting robustness and code reusability, polymorphic types present challenges in learning and comprehension, particularly for novice users \cite{Jun2000-ec, Jun2000-yu}; as it is often argued that the expressiveness power of type systems often comes at the cost of their usability~\cite{Hage2020-hg}. Research indicates that humans tend to focus on concrete types and rely on polymorphic type checking only as a last resort. Moreover, polymorphic types often complicate type error usability. During type checking, compilers frequently generate new polymorphic type variables temporarily. These variables are typically discarded after type checking unless a type error occurs, in which case they are referenced in error messages. Consequently, programmers often face the task of resolving type errors involving type variables they did not explicitly author (Fig. \ref{fig:example-foldable}). Unfortunately, not many \DIFdelbegin \DIFdel{research focuses }\DIFdelend \DIFaddbegin \DIFadd{studies focus }\DIFaddend on the \textit{usability} of polymorphic types. 
+While promoting robustness and code reusability, polymorphic types present challenges in learning and comprehension, particularly for novice users \cite{Jun2000-ec, Jun2000-yu}; as it is often argued that the expressiveness \DIFdelbegin \DIFdel{power }\DIFdelend of type systems often comes at the cost of their usability~\cite{Hage2020-hg}. Research indicates that humans tend to focus on concrete types and rely on polymorphic type checking only as a last resort. Moreover, polymorphic types often complicate \DIFdelbegin \DIFdel{type error usability }\DIFdelend \DIFaddbegin \DIFadd{the usability of type errors}\DIFaddend . During type checking, compilers frequently generate new polymorphic type variables temporarily. These variables are typically discarded after type checking unless a type error occurs, in which case they are referenced in error messages. Consequently, programmers often face the task of resolving type errors involving type variables they did not explicitly author (Fig. \ref{fig:example-foldable}). Unfortunately, not many \DIFdelbegin \DIFdel{research focuses }\DIFdelend \DIFaddbegin \DIFadd{studies focus }\DIFaddend on the \textit{usability} of polymorphic types. 
 
 \begin{figure}[]
   \includegraphics[width=\linewidth]{figures/Foldable}
@@ -112,13 +130,18 @@ While promoting robustness and code reusability, polymorphic types present chall
 \DIFdelFL{GeckoGraph shows the exact message }\DIFdelendFL \DIFaddbeginFL {\bf \DIFaddFL{Right:}} \DIFaddFL{Type error }\DIFaddendFL with \DIFdelbeginFL \DIFdelFL{the two types in graphic notation, highlighting the structural difference rather than identifier names.}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{GeckoGraph}\DIFaddendFL }
 \end{figure}
 
- We aim to investigate the challenges of using polymorphic types and explore how to improve their usability with visualization and modern \DIFdelbegin \DIFdel{HCI (}\DIFdelend Human-Computer Interaction \DIFaddbegin \DIFadd{(HCI}\DIFaddend ) techniques. In this paper, we propose GeckoGraph, a graphical notation for types. GeckoGraph aims to complement traditional text-based type notation and make reading, understanding, and comparing types easier. GeckoGraph is prototyped and verified iteratively, leading to a design with visual clarity applicable to many programming contexts. 
- \DIFdelbegin \DIFdel{Our study evaluating 714 participants' ability to solve a series of programming challenges using GeckoGraph versus }\DIFdelend \DIFaddbegin \DIFadd{To evaluate its effectiveness, we conducted a large-scale user study comparing GeckoGraph with standard }\DIFaddend text-based type \DIFdelbegin \DIFdel{annotation is, to }\DIFdelend \DIFaddbegin \DIFadd{notation. To }\DIFaddend our knowledge, \DIFaddbegin \DIFadd{this represents }\DIFaddend the largest controlled user study \DIFdelbegin \DIFdel{of a functional programming tool or concept.
+ We aim to investigate the challenges of using polymorphic types and explore how to improve their usability with visualization and modern Human-Computer Interaction (HCI) techniques. In this paper, we propose GeckoGraph, a graphical notation for types. GeckoGraph aims to complement traditional text-based type notation and make reading, understanding, and comparing types easier. GeckoGraph is prototyped and \DIFdelbegin \DIFdel{verified iteratively , leading to }\DIFdelend \DIFaddbegin \DIFadd{iteratively verified, resulting in }\DIFaddend a design with visual clarity applicable \DIFdelbegin \DIFdel{to }\DIFdelend \DIFaddbegin \DIFadd{across }\DIFaddend many programming contexts. 
+ \DIFdelbegin \DIFdel{We designed an online puzzle game }\textit{\DIFdel{ZeroToHero}}%DIFAUXCMD
+\footnote{\DIFdel{Available at https://zerotohero.fly.dev}}%DIFAUXCMD
+\addtocounter{footnote}{-1}%DIFAUXCMD
+\DIFdel{, evaluating 714 participants' performance to solve a series of programming challenges using GeckoGraph versus }\DIFdelend \DIFaddbegin \DIFadd{To evaluate its effectiveness, we conducted a large-scale user study comparing GeckoGraph with standard }\DIFaddend text-based type \DIFdelbegin \DIFdel{annotation, which is, to }\DIFdelend \DIFaddbegin \DIFadd{notation. To }\DIFaddend our knowledge, \DIFaddbegin \DIFadd{this represents }\DIFaddend the largest controlled user study \DIFdelbegin \DIFdel{of a functional programming tool or concept.
 The study results show that GeckoGraph helps improve programmers ' ability to succeed in resolving programming challenges, especially for novice programmers}\DIFdelend \DIFaddbegin \DIFadd{on functional programming to date.
 The results show no overall significant differences in task completion time or success rate. However, we observed a modest improvement in success rate among beginner participants. For the most challenging task, GeckoGraph improved success rates by 14.5\% for beginners and 11.2\% for less experienced users. These findings suggest that GeckoGraph has potential as a teaching and learning aid for polymorphic type systems.
 }
 
-\section{\DIFadd{Type Systems in Functional Programming}}
+%DIF >  In Section~\ref{sec:type-systems}, we review key type system features in functional programming languages, many of which have recently been adopted by object-oriented and multi-paradigm languages. We highlight how these features enable flexible abstraction and expressive type modeling, while sometimes hindering usability for beginners. Section~\ref{sec:gecko-graph} presents the design of GeckoGraph, illustrating how it visualizes complex type-level information that is often implicit or hard to interpret textually. Section~\ref{sec:evaluation} describes our user study, ZeroToHero, a series of 10 programming challenges, along with the study design, recruitment, and hypotheses. Section~\ref{sec:results} reports quantitative and qualitative findings, including completion time, success rates, and participant feedback. In Section~\ref{sec:discussion}, we interpret these results, discuss GeckoGraph’s benefits and usability challenges, and explore potential applications. Section~\ref{sec:related-work} reviews related visualization research, and Section~\ref{sec:conclusion} summarizes our contributions and outlines future directions.
+
+\section{\DIFadd{Type Systems in Functional Programming}} \label{sec:type-systems}
 
 \DIFadd{Functional programming languages have a rich history of embracing strong type systems and pioneering advanced type system features \mbox{%DIFAUXCMD
 \cite{Milner1978-ob, MacQueen2020-qn, Hudak2007-kn}}\hskip0pt%DIFAUXCMD
@@ -169,7 +192,8 @@ to check entire programs without requiring explicit annotations. While this impr
 }
 
 
-\DIFaddend \section{GeckoGraph}
+\DIFaddend \section{GeckoGraph} \DIFaddbegin \label{sec:gecko-graph}
+\DIFaddend 
 
 GeckoGraph is a visual notation for type annotations in statically typed programming languages. It is intended to work tangibly with text-based annotations but uses colors, shapes, and symbols to make structures of types easy to identify at a glance. In this section, we describe the design of GeckoGraph and highlight some unique benefits of programming with GeckoGraph.
 
@@ -283,8 +307,8 @@ Modern programming environments often allow programmers to mouse over part of th
   \DIFdelbeginFL %DIFDELCMD < \label{fig:advanced}
 %DIFDELCMD <   %%%
 \DIFdelendFL \includegraphics[width=\linewidth]{figures/Advanced}
-  \caption{\label{fig:advanced}
-  Advanced features of GeckoGraph. (A) \DIFdelbeginFL \DIFdelFL{GeckoGraph supports }\DIFdelendFL Kind \DIFdelbeginFL \DIFdelFL{Visualization if the inferred kind is greater than }\texttt{\DIFdelFL{*}}%DIFAUXCMD
+  \caption{\DIFaddbeginFL \label{fig:advanced}
+  \DIFaddendFL Advanced features of GeckoGraph. (A) \DIFdelbeginFL \DIFdelFL{GeckoGraph supports }\DIFdelendFL Kind \DIFdelbeginFL \DIFdelFL{Visualization if the inferred kind is greater than }\texttt{\DIFdelFL{*}}%DIFAUXCMD
 \DIFdelendFL \DIFaddbeginFL \DIFaddFL{visualization}\DIFaddendFL . (B)  \DIFdelbeginFL \DIFdelFL{GeckoGraph supports qualified }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Qualified }\DIFaddendFL constraints\DIFdelbeginFL \DIFdelFL{by extending the extended area across multiple type variables}\DIFdelendFL . (C)  \DIFdelbeginFL \DIFdelFL{GeckoGraph supports }\DIFdelendFL Multiple Parameter Type Classes\DIFdelbeginFL \DIFdelFL{, using different shapes of the same color to indicate that multiple variables must satisfy certain type classes collectively}\DIFdelendFL . (D) \DIFdelbeginFL \DIFdelFL{GeckoGraph supports the precise }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Precise }\DIFaddendFL selection of \DIFdelbeginFL \DIFdelFL{its }\DIFdelendFL sub-structures. }
 \end{figure}
 
@@ -314,13 +338,14 @@ In level 3 (Fig. \ref{fig:level3}),  players need to implement the function {\tt
 }\DIFaddend 
 
 
-
 \subsection{Recruitment}
 Participants were recruited online through the Haskell community on Reddit and Discord. Participation is fully anonymized; detailed ethical implications of these experiments were reviewed and approved by the IRB of the authors' institution.
 
 \subsection{Group Assignments}
 
-\DIFdelbegin \DIFdel{The experiment uses a between-subject design. }\DIFdelend Participants are assigned to one of two groups \DIFdelbegin \DIFdel{. The }\DIFdelend \DIFaddbegin \DIFadd{(A and B). The experiment uses a between-subjects design.  The }\DIFaddend tasks assigned to the two groups are \DIFdelbegin \DIFdel{in the sameorder. Participants }\DIFdelend \DIFaddbegin \DIFadd{the same. All participants }\DIFaddend receive both treatments (with and without GeckoGraph) during their runs\DIFaddbegin \DIFadd{, }\DIFaddend but in a different order.   \DIFdelbegin \DIFdel{Group one }\DIFdelend \DIFaddbegin {\bf \DIFadd{Group A}} \DIFaddend is assisted by GeckoGraph on even levels and \DIFdelbegin \DIFdel{text-only }\DIFdelend \DIFaddbegin \DIFadd{text-based }\DIFaddend type annotation on odd levels. \DIFdelbegin \DIFdel{Group two participants are the same but with the order flipped}\DIFdelend \DIFaddbegin {\it \DIFadd{Group B}} \DIFadd{is assisted by text-based type annotation on even levels and GeckoGraph on odd levels}\DIFaddend . The number of participants in the two groups is counterbalanced.
+\DIFdelbegin \DIFdel{The experiment uses a between-subject design. }\DIFdelend Participants are assigned to one of two groups \DIFdelbegin \DIFdel{. The }\DIFdelend \DIFaddbegin \DIFadd{(A and B). The experiment uses between-subjects design \mbox{%DIFAUXCMD
+\cite{Fisher1949-fn}}\hskip0pt%DIFAUXCMD
+.  The }\DIFaddend tasks assigned to the two groups are \DIFdelbegin \DIFdel{in the sameorder. Participants }\DIFdelend \DIFaddbegin \DIFadd{the same. All participants }\DIFaddend receive both treatments (with and without GeckoGraph) during their runs\DIFaddbegin \DIFadd{, }\DIFaddend but in a different order.   \DIFdelbegin \DIFdel{Group one }\DIFdelend \DIFaddbegin {\bf \DIFadd{Group A}} \DIFaddend is assisted by GeckoGraph on even levels and \DIFdelbegin \DIFdel{text-only }\DIFdelend \DIFaddbegin \DIFadd{text-based }\DIFaddend type annotation on odd levels. \DIFdelbegin \DIFdel{Group two participants are the same but with the order flipped}\DIFdelend \DIFaddbegin {\it \DIFadd{Group B}} \DIFadd{is assisted by text-based type annotation on even levels and GeckoGraph on odd levels}\DIFaddend . The number of participants in the two groups is counterbalanced.
 
 \subsection{Hypothesis}
 In programming tasks that involve reading and understanding polymorphic types, graphic notation using visual elements that provide higher grouping strength (colors, shapes, sizes, and symbols) can improve the performance of such tasks compared to traditional text-based type notation. Our null hypothesis is: {\it Using graphic notation has no effect compared to traditional text-based type notation.} This hypothesis and the task design were registered at the Open Science Foundation prior to data collection \cite{Stuckey2023-vl}. 
@@ -335,13 +360,12 @@ Participants can skip a level \DIFdelbegin \DIFdel{during the game }\DIFdelend i
 }\DIFaddend 
 
 \subsection{Measurements}
-During the study, the time spent by participants on each task is recorded. We also record the resulting status of each level, whether it is a success or \DIFaddbegin \DIFadd{a }\DIFaddend failure. Before \DIFdelbegin \DIFdel{each run}\DIFdelend \DIFaddbegin \DIFadd{starting the study}\DIFaddend , participants nominate their level of Haskell experience on a four-level scale: beginner, familiar,  knowledgeable, and expert.  If a participant has completed all 10 levels (with the help of skipping), we invite the participant to complete a post-study survey. In it, we ask for \DIFdelbegin \DIFdel{their opinion on how intuitive }\DIFdelend \DIFaddbegin \DIFadd{them to rate how }{\bf \DIFadd{intuitive}} \DIFaddend the GeckoGraph design is, how \DIFdelbegin \DIFdel{distracting }\DIFdelend \DIFaddbegin {\bf \DIFadd{distracting}} \DIFaddend they find GeckoGraph, and how \DIFdelbegin \DIFdel{helpful GeckoGraph is during the game}\DIFdelend \DIFaddbegin {\bf \DIFadd{helpful}} \DIFadd{GeckoGraph is}\DIFaddend , using a seven-point scale. In the end, we ask \DIFdelbegin \DIFdel{a few }\DIFdelend \DIFaddbegin \DIFadd{2 }\DIFaddend open-ended questions\DIFdelbegin \DIFdel{, inviting participants to provide their }\DIFdelend \DIFaddbegin \DIFadd{: }{\it \DIFadd{What is your overall }\DIFaddend experience using GeckoGraph\DIFdelbegin \DIFdel{and their expectations about }\DIFdelend \DIFaddbegin } \DIFadd{and }{\it \DIFadd{What are your expectations on }\DIFaddend the potential applications of GeckoGraph\DIFaddbegin }\DIFaddend .
+During the study, the time spent by participants on each task is recorded. We also record the resulting status of each level, whether it is a success or a failure. Before \DIFdelbegin \DIFdel{each run}\DIFdelend \DIFaddbegin \DIFadd{starting the study}\DIFaddend , participants nominate their level of Haskell experience on a four-level scale: beginner, familiar,  knowledgeable, and expert.  If a participant has completed all 10 levels (with the help of skipping), we invite the participant to complete a post-study survey. In it, we ask for \DIFdelbegin \DIFdel{their opinion on how intuitive }\DIFdelend \DIFaddbegin \DIFadd{them to rate how }{\bf \DIFadd{intuitive}} \DIFaddend the GeckoGraph design is, how \DIFdelbegin \DIFdel{distracting }\DIFdelend \DIFaddbegin {\bf \DIFadd{distracting}} \DIFaddend they find GeckoGraph, and how \DIFdelbegin \DIFdel{helpful GeckoGraph is during the game}\DIFdelend \DIFaddbegin {\bf \DIFadd{helpful}} \DIFadd{GeckoGraph is}\DIFaddend , using a seven-point scale. In the end, we ask \DIFdelbegin \DIFdel{a few }\DIFdelend \DIFaddbegin \DIFadd{2 }\DIFaddend open-ended questions\DIFdelbegin \DIFdel{, inviting participants to provide their }\DIFdelend \DIFaddbegin \DIFadd{: }{\it \DIFadd{What is your overall }\DIFaddend experience using GeckoGraph\DIFdelbegin \DIFdel{and their expectations about }\DIFdelend \DIFaddbegin } \DIFadd{and }{\it \DIFadd{What are your expectations on }\DIFaddend the potential applications of GeckoGraph\DIFaddbegin }\DIFaddend .
 
-Data collection \DIFdelbegin \DIFdel{from }\DIFdelend \DIFaddbegin \DIFadd{of }\DIFaddend the study was stopped after the planned cut-off period of 14 days. After the cut-off date, the ZeroToHero \DIFdelbegin \DIFdel{game is open source }\DIFdelend \DIFaddbegin \DIFadd{website is open-sourced }\DIFaddend and available for free evaluation\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
-\cite{Anonymous_undated-ne} }\hskip0pt%DIFAUXCMD
-}\DIFdelend \DIFaddbegin \footnote{\DIFadd{https://zerotohero.fly.dev}}\DIFadd{, }\DIFaddend and repeating our experiment\DIFdelbegin \DIFdel{, but }\DIFdelend \DIFaddbegin \DIFadd{. However, }\DIFaddend no further data was collected. 
+Data collection \DIFdelbegin \DIFdel{from }\DIFdelend \DIFaddbegin \DIFadd{of }\DIFaddend the study was stopped after the planned cut-off period of 14 days. After the cut-off date, the ZeroToHero \DIFdelbegin \DIFdel{game is open source }\DIFdelend \DIFaddbegin \DIFadd{website is open-sourced }\DIFaddend and available for free evaluation\footnote{https://zerotohero.fly.dev}\DIFaddbegin \DIFadd{, }\DIFaddend and repeating our experiment\DIFdelbegin \DIFdel{, but }\DIFdelend \DIFaddbegin \DIFadd{. However, }\DIFaddend no further data was collected. 
 
-\section{Results}
+\section{Results} \DIFaddbegin \label{sec:results}
+\DIFaddend 
 
 During the data collection period, a total of 714 users participated in the study. Among them, 245 are novice users, 216 are familiar with Haskell, 216 are knowledgeable users, and 88 are expert users. 
 
@@ -368,11 +392,9 @@ We will address this correlation in Section~\ref{sec:discussion}.
 
 Level 10 is the most cognitively demanding: the provided functions are the lengthiest, and the solution is challenging and deceptive. Programmers must use the provided rotate function {\it f2} to adjust the positions of the four components of the {\it Zero} value four times to get to the correct position. Completing the level requires applying the functions {\it f1}, {\it f2}, and {\it f3} in a nested sequence that is 8 layers deep. Consequently, programmers need to frequently switch contexts to recall the purpose of each function. We speculate that this level demands the mental flexibility typical of a Haskell expert to internalize these functions quickly. GeckoGraph helps less experienced programmers to achieve the same level of comprehension fluency by adding \DIFdelbegin \DIFdel{structural }\DIFdelend \DIFaddbegin \DIFadd{visual }\DIFaddend clarity.
 
-\DIFdelbegin %DIFDELCMD < \begin{figure}[]
-%DIFDELCMD <   %%%
-\DIFdelendFL \DIFaddbeginFL \begin{figure}[ht]
-  \DIFaddendFL \includegraphics[width=\linewidth]{figures/SuccessfulRate}
-  \caption{\label{fig:success-rate}{\bf Success rate of each task, with 95\% confidence interval, grouped by experience level.} The figure is cropped from 50\% to 100\% for readability. \DIFaddbeginFL \DIFaddFL{Bootstrapping was used for computing the confidence interval because of the non-normal distribution. }\DIFaddendFL In most tasks, GeckoGraph provides a small edge. However, significant differences were found in task 10 of the beginner group and task 10 of the familiar group. }
+\begin{figure}[ht]
+  \includegraphics[width=\linewidth]{figures/SuccessfulRate}
+  \caption{\label{fig:success-rate}{\bf Success rate of each task, with 95\% confidence interval, grouped by experience level.} The figure is cropped from 50\% to 100\% for readability. Bootstrapping was used for computing the confidence interval because of the non-normal distribution. In most tasks, GeckoGraph provides a small edge. However, significant differences were found in task 10 of the beginner group and task 10 of the familiar group. }
 \end{figure}
 
 \subsection{Qualitative Feedback}
@@ -409,18 +431,18 @@ Although we justified the use of skips in Section \ref{subsection:task}, the ava
 \DIFaddbegin 
 
 \DIFadd{This section discusses the main findings and implications of our study. 
-We begin by outlining the strengths of GeckoGraph observed from both quantitative and qualitative results (Section~\ref{sec:discussion:strengths}). 
+We speculate the strengths of GeckoGraph observed from both quantitative and qualitative results (Section~\ref{sec:discussion:strengths}). 
 We then discuss the limitations of the current design (Section~\ref{sec:discussion:weaknesses}) and reflect on the gamified nature of our user study (Section~\ref{sec:discussion:gamification}). 
 Finally, we identify potential applications of GeckoGraph in programming tools, documentation, and education (Section~\ref{sec:discussion:applications}).
 }
 
 \DIFaddend \subsection{Strengths}\DIFdelbegin \DIFdel{From the results of our experiment, we see }\DIFdelend \DIFaddbegin \label{sec:discussion:strengths}
-\DIFadd{Overall, our experimental results show no statistically significant difference in task completion time between conditions with and without GeckoGraph. However, we find }\DIFaddend that using GeckoGraph \DIFdelbegin \DIFdel{has a significant }\DIFdelend \DIFaddbegin \DIFadd{shows a significant albeit moderate }\DIFaddend effect on the \DIFdelbegin \DIFdel{success rate of our participants, especially for less experienced programmers. We also see that with the data we collected, we did not find a significant time difference between programming with and without GeckoGraph . To extrapolate the observed expressiveness, we speculate on }\DIFdelend \DIFaddbegin \DIFadd{task success rates for beginners. Particularly, in the hardest task (task 10), GeckoGraph improved the success rates across the two less experienced user groups by 14.5\% and 11.2\%, respectively. 
-To interpret the observed advantages, we discuss }\DIFaddend the practical benefits \DIFdelbegin \DIFdel{of programming with GeckoGraph }\DIFdelend \DIFaddbegin \DIFadd{that GeckoGraph offers to programmers}\DIFaddend .
+\DIFadd{Overall, our experimental results show no statistically significant difference in task completion time between conditions with and without GeckoGraph. However, we find }\DIFaddend that using GeckoGraph \DIFdelbegin \DIFdel{has a significanteffect on the success rate of our participants, especially for less experienced programmers. We also see that with the data we collected, we did not find a significant time difference between programming with and without GeckoGraph . To extrapolate the observed expressiveness, we speculate on }\DIFdelend \DIFaddbegin \DIFadd{shows a significant, albeit moderate, effect on task success rates for beginners. In particular, on the hardest task (task 10), GeckoGraph improved the success rates across the two less experienced user groups by 14.5\% and 11.2\%, respectively. 
+To interpret the observed advantages, we hypothesize }\DIFaddend the practical benefits \DIFdelbegin \DIFdel{of programming with GeckoGraph }\DIFdelend \DIFaddbegin \DIFadd{that GeckoGraph offers to programmers}\DIFaddend .
 
 \subsubsection{\DIFdelbegin \DIFdel{Identify }\DIFdelend \DIFaddbegin \DIFadd{Identifying }\DIFaddend the Most Important Features}
-\DIFdelbegin \DIFdel{One trend we saw from the qualitative feedback is that programmers find GeckoGraph helpful for finding patterns and important features of the types. 
-Programmers are very positive about GeckoGraph 's ability to reveal the most helpful features }\DIFdelend \DIFaddbegin \DIFadd{Qualitative feedback revealed that programmers found GeckoGraph particularly helpful for spotting patterns and identifying important features in type signatures. 
+\DIFdelbegin \DIFdel{One trend we saw from the qualitative feedback is that programmers find GeckoGraph }\DIFdelend \DIFaddbegin \DIFadd{Qualitative feedback revealed that programmers found GeckoGraph particularly }\DIFaddend helpful for spotting patterns and \DIFdelbegin \DIFdel{important features from the types. 
+Programmers are very positive about GeckoGraph 's ability to reveal the most helpful features }\DIFdelend \DIFaddbegin \DIFadd{identifying important features in type signatures. 
 Participants appreciated how GeckoGraph highlights key aspects }\DIFaddend of a type \DIFdelbegin \DIFdel{in distinctive visual elements }\DIFdelend \DIFaddbegin \DIFadd{using distinctive visual properties }\DIFaddend such as color, length, and height. 
 \DIFdelbegin \DIFdel{To quote some feedback from participants}\DIFdelend \DIFaddbegin \DIFadd{Representative comments include}\DIFaddend : 
 ``{\it Types are much easier to understand \DIFdelbegin \DIFdel{by the }\DIFdelend \DIFaddbegin \DIFadd{with }\DIFaddend GeckoGraph than by trying to parse all parentheses and understand the types from the signature.}\DIFdelbegin \DIFdel{" }\DIFdelend \DIFaddbegin \DIFadd{'' and 
@@ -519,13 +541,19 @@ In our context, it helped attract a diverse set of participants across a wide ra
 
 \DIFaddend \subsubsection{Programming Assistance}
 \DIFdelbegin \DIFdel{We envision many ways GeckoGraph can be integrated into programming tools. 
-GeckoGraph can visualize and inspect types in tooltipsand pop-ups. 
-It can }\DIFdelend \DIFaddbegin \DIFadd{Post-study feedback highlighted a strong interest in integrating GeckoGraph into programming environments. 
-Modern IDEs already allow users to inspect expression types via hover tooltips; GeckoGraph could enhance this feature by visualizing type structures directly in the tooltip. 
-Similarly, GeckoGraph could }\DIFaddend be used to \DIFdelbegin \DIFdel{discover the mismatching parts of two conflicting types in type errors. It can be used to generate type expressions and edit type expressions structurally. In our post-study survey, the potential integration of text editors and programming assistance were the most requested use cases proposed by the participants.}\DIFdelend \DIFaddbegin \DIFadd{visualize mismatched parts of conflicting types during compilation errors, as illustrated in Fig.~\ref{fig:example-foldable}.
+GeckoGraph can visualize and inspect types in tooltipsand pop-ups.It can }\DIFdelend \DIFaddbegin \DIFadd{Post-study feedback highlighted a strong interest in integrating GeckoGraph into programming environments. 
+Modern IDEs already allow users to inspect expression types via hover tooltips; GeckoGraph could enhance this feature by visualizing type structures directly in the tooltip, as envisioned in Fig.~\ref{fig:application} (Left). 
+Similarly, GeckoGraph could }\DIFaddend be used to \DIFdelbegin \DIFdel{discover the mismatching parts of two conflicting types in type errors. It can be used to generate type expressions and edit type expressions structurally. In our post-study survey, the potential integration of text editors and programming assistance were the most requested use cases proposed by the participants.}\DIFdelend \DIFaddbegin \DIFadd{visualize mismatched parts of conflicting types during compilation errors, as illustrated in Fig.~\ref{fig:application} (Right).
 }\DIFaddend 
 
-\subsubsection{Documentation Assistance}
+\DIFaddbegin \begin{figure}[]
+  \includegraphics[width=\linewidth]{figures/Application.png}
+  \caption{\label{fig:application} 
+ {\bf \DIFaddFL{Envisioning GeckoGraph as programming assistance}}\DIFaddFL{. (Left) Display GeckoGraph as type hints; (Right) Visualize mismatched types with GeckoGraph. }}
+\end{figure}
+
+
+\DIFaddend \subsubsection{Documentation Assistance}
 \DIFdelbegin \DIFdel{From what we have learned from our human study, GeckoGraph is well suited to support the documentation of the programming library and the API documentation . It works in tandem with the traditional text-based language and }\DIFdelend \DIFaddbegin \DIFadd{Our findings suggest GeckoGraph would be highly effective for visualizing function types in API documentation and programming libraries. 
 Because GeckoGraph representations }\DIFaddend can be generated \DIFdelbegin \DIFdel{mechanically, making it possible to standardize with }\DIFdelend \DIFaddbegin \DIFadd{automatically, integration into documentation systems like Hoogle \mbox{%DIFAUXCMD
 \cite{Mitchell_undated-fb} }\hskip0pt%DIFAUXCMD
@@ -559,8 +587,8 @@ GeckoGraph reveals these }\DIFaddend higher-kinded types \DIFdelbegin \DIFdel{, 
 \end{figure}
 
 
-\section{Related work}
-\DIFaddbegin \DIFadd{This section reviews prior work in three areas relevant to this research. First, we examine approaches to the visualization of types in programming languages. 
+\section{Related work} \DIFaddbegin \label{sec:related-work}
+\DIFadd{This section reviews prior work in three areas relevant to this research. First, we examine approaches to the visualization of types in programming languages. 
 We then broaden our view to general visualization techniques applied to programming environments, including topics like memory allocation and change history. Finally, we review studies comparing visual and textual representations in programming education and environments.
 }
 
@@ -663,8 +691,8 @@ Both systems report positive effects }\DIFaddend of visual augmentation.
 Although \DIFdelbegin \DIFdel{similar to GeckoGraph in combining visual language and text-based programming environment, both studies evaluated the effect based }\DIFdelend \DIFaddbegin \DIFadd{GeckoGraph also combines visual and textual representations, it differs in that prior studies focused }\DIFaddend on imperative languages \DIFdelbegin \DIFdel{(}\DIFdelend \DIFaddbegin \DIFadd{such as }\DIFaddend Java and Python\DIFdelbegin \DIFdel{), while our evaluation focused on the effect on a functional language }\DIFdelend \DIFaddbegin \DIFadd{, whereas our evaluation investigates its effect in a functional programming context }\DIFaddend (Haskell).
 
 
-\section{Conclusion and Future Work}
-In this paper, we propose GeckoGraph, a graphical notation for type annotations in functional programming languages. GeckoGraph aims to \DIFdelbegin \DIFdel{accompany }\DIFdelend \DIFaddbegin \DIFadd{complement }\DIFaddend traditional text-based type notation \DIFdelbegin \DIFdel{and to make }\DIFdelend \DIFaddbegin \DIFadd{by making }\DIFaddend reading, understanding, and comparing types easier. We conducted a large-scale human study using GeckoGraph\DIFdelbegin \DIFdel{compared }\DIFdelend \DIFaddbegin \DIFadd{, comparing it }\DIFaddend to text-based type notation\DIFdelbegin \DIFdel{, }\DIFdelend \DIFaddbegin \DIFadd{. This is }\DIFaddend the largest user study on functional programming we are aware of. \DIFdelbegin \DIFdel{The results of the study show that GeckoGraph helps improve programmers' ability to succeed in the programming tasks we designed, especially for novice }\DIFdelend \DIFaddbegin \DIFadd{Although no significant effect was found on the overall time to complete each programming task, we found a modest effect on the success rate in the beginner group. In one of the more difficult programming tasks, we find that GeckoGraph significantly improves the success rate by 14.5\% for beginners and 11.2\% for less experienced }\DIFaddend programmers.
+\section{Conclusion and Future Work} \DIFaddbegin \label{sec:conclusion}
+\DIFaddend In this paper, we propose GeckoGraph, a graphical notation for type annotations in functional programming languages. GeckoGraph aims to \DIFdelbegin \DIFdel{accompany }\DIFdelend \DIFaddbegin \DIFadd{complement }\DIFaddend traditional text-based type notation \DIFdelbegin \DIFdel{and to make }\DIFdelend \DIFaddbegin \DIFadd{by making }\DIFaddend reading, understanding, and comparing types easier. We conducted a large-scale human study using GeckoGraph\DIFdelbegin \DIFdel{compared }\DIFdelend \DIFaddbegin \DIFadd{, comparing it }\DIFaddend to text-based type notation\DIFdelbegin \DIFdel{, }\DIFdelend \DIFaddbegin \DIFadd{. This is }\DIFaddend the largest user study on functional programming we are aware of. \DIFdelbegin \DIFdel{The results of the study show that GeckoGraph helps improve programmers' ability to succeed in the programming tasks we designed, especially for novice }\DIFdelend \DIFaddbegin \DIFadd{Although no significant effect was found on the overall time to complete each programming task, we found a modest effect on the success rate in the beginner group. In one of the more difficult programming tasks, we find that GeckoGraph significantly improves the success rate by 14.5\% for beginners and 11.2\% for less experienced }\DIFaddend programmers.
 
 Our work in this area opens many new directions for future research.  In particular:
 
@@ -679,9 +707,7 @@ We strongly believe that visualization is an underutilized technique in this eff
 
 \appendix
 \section{\DIFdelbegin \DIFdel{Game levels}\DIFdelend \DIFaddbegin \DIFadd{User study tasks}\DIFaddend } \label{levels}
-We provide all the level settings we used in our user study. The \DIFdelbegin \DIFdel{online game is }\DIFdelend \DIFaddbegin \DIFadd{tasks are }\DIFaddend open source and available for evaluation\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
-\cite{Anonymous_undated-ne}}\hskip0pt%DIFAUXCMD
-}\DIFdelend \DIFaddbegin \footnote{\DIFadd{https://zerotohero.fly.dev}}\DIFaddend . However, this can be attempted locally with a Haskell interpreter or even with a pen and paper. The target type is the desired type signature for the function \texttt{zeroToHero}. The available functions show a list of functions that are allowed to be used in the implementation. It is not required to use all the available functions, and it is not forbidden to use any other functions or variables outside the provided functions; even the Haskell prelude is not available. 
+We provide all the level settings we used in our user study. The \DIFdelbegin \DIFdel{online game is }\DIFdelend \DIFaddbegin \DIFadd{tasks are }\DIFaddend open source and available for evaluation\footnote{https://zerotohero.fly.dev}. However, this can be attempted locally with a Haskell interpreter or even with a pen and paper. The target type is the desired type signature for the function \texttt{zeroToHero}. The available functions show a list of functions that are allowed to be used in the implementation. It is not required to use all the available functions, and it is not forbidden to use any other functions or variables outside the provided functions; even the Haskell prelude is not available. 
 
 
 \subsection{Level 1: Trial run}
